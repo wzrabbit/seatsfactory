@@ -1,0 +1,137 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-size: 0px;
+}
+html,body {
+  height: 100%;
+}
+body {
+  background-color: black;
+  background-image: url("images/background.png");
+  background-attachment: fixed;
+}
+h1{
+  display: block;
+  font-family: 'Black Han Sans', sans-serif;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  text-align: center;
+  text-shadow: 0px 2px 3px white;
+  font-weight: 100;
+  font-size: 50px;
+  color: white;
+}
+h2{
+  font-family: 'Black Han Sans', sans-serif;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 100;
+  font-size: 35px;
+  color: white;
+}
+.button {
+  width: 120px;
+  height:49px;
+  cursor: pointer;
+  vertical-align: top;
+}
+.big_button {
+  width: 200px;
+  height: 65px;
+  cursor: pointer;
+}
+.buttoncore {
+  display: none;
+}
+td {
+  margin: 2px;
+  border: none;
+}
+.table {
+  margin: 15px;
+  display:inline-block;
+  vertical-align: top;
+}
+.normal {
+  box-shadow: 0px 0px 15px white inset;
+  border: 5px solid white;
+  color:white;
+}
+.normal_empty {
+  border: 5px solid #4E4E4E;
+  color: #4E4E4E;
+}
+.male {
+  box-shadow: 0px 0px 15px #01EAFB inset;
+  border: 5px solid #01EAFB;
+  color: #01EAFB;
+}
+.male_empty {
+  border: 5px solid #005B61;
+  color: #005B61;
+}
+.female {
+  box-shadow: 0px 0px 15px #FB61A4 inset;
+  border: 5px solid #FB61A4;
+  color:#FB61A4;
+}
+.female_empty {
+  border: 5px solid #4C0033;
+  color: #4C0033;
+}
+  .const {
+    box-shadow: 0px 0px 15px #FAE25D inset;
+    border: 5px solid #FAE25D;
+    color: #FAE25D;
+}
+.const_empty {
+  border: 5px solid #393100;
+  color: #393100;
+}
+#cell {
+  width:90px;
+  height:45px;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 5px;
+  font-family: 'Nanum Gothic', sans-serif;
+  background-color: transparent;
+}
+#cell:focus {
+  outline: none;
+}
+.main {
+  display: block;
+  white-space: nowrap; /* 표 줄바뀜 방지 */
+  text-align: center;
+  overflow: auto;
+  width: 100%;
+  height: calc(100% - 192.4px);
+  max-width: 100%;
+  box-shadow: 0px 0px 30px white;
+}
+.menu {
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+  overflow: auto;
+  width: 100%;
+  height: 90px;
+}
+.tip {
+  display: block;
+  width: 100%;
+  height: 35px;
+  font-size: 22px;
+  font-family: 'Jua', sans-serif;
+  text-align: center;
+  color: white;
+  padding-top: 5px;
+}
+.layout {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
