@@ -44,7 +44,7 @@ var tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해�
   for (i = 1; i <= columns; i++) {
     a += "<tr>";
     for (j = 1; j <= rows; j++) {
-      a += "<td><input class = 'normal' id = 'cell' type = 'text' onclick = 'tableSelected(this)'></input></td>";
+      a += "<td><input class = 'normal cell' type = 'text' onclick = 'tableSelected(this)'></input></td>";
     }
     a += "</tr>";
   }
@@ -60,7 +60,7 @@ function makeTableAuto(rows, columns) {
   for (i = 1; i <= columns; i++) {
     a += "<tr>";
     for (j = 1; j <= rows; j++) {
-      a += "<td><input class = 'normal' id = 'cell' type = 'text' onclick = 'tableSelected()'></input></td>";
+      a += "<td><input class = 'normal cell' type = 'text' onclick = 'tableSelected()'></input></td>";
     }
     a += "</tr>";
   }
@@ -136,16 +136,16 @@ function tableSelected(select) {
   var male_empty = document.getElementsByClassName("male_empty");
   var const_empty = document.getElementsByClassName("const_empty");
   if (mode == 1) {
-    if (select.className != "male") {select.className = "male";} else {select.className = "normal";}
+    if (select.className != "male cell") {select.className = "male cell";} else {select.className = "normal cell";}
   }
   if (mode == 2) {
-    if (select.className != "const") {select.className = "const";} else {select.className = "normal";}
+    if (select.className != "const cell") {select.className = "const cell";} else {select.className = "normal cell";}
   }
-  for (i = female.length-1; i >= 0; i--) {female[i].className = "normal";}
-  for (i = female_empty.length-1; i >= 0; i--) {female_empty[i].className = "normal";}
-  for (i = normal_empty.length-1; i >= 0; i--) {normal_empty[i].className = "normal";}
-  for (i = male_empty.length-1; i >= 0; i--) {male_empty[i].className = "male";}
-  for (i = const_empty.length-1; i >= 0; i--) {const_empty[i].className = "const";}
+  for (i = female.length-1; i >= 0; i--) {female[i].className = "normal cell";}
+  for (i = female_empty.length-1; i >= 0; i--) {female_empty[i].className = "normal cell";}
+  for (i = normal_empty.length-1; i >= 0; i--) {normal_empty[i].className = "normal cell";}
+  for (i = male_empty.length-1; i >= 0; i--) {male_empty[i].className = "male cell";}
+  for (i = const_empty.length-1; i >= 0; i--) {const_empty[i].className = "const cell";}
 }
 
 function shuffleSeats(list) {
@@ -170,45 +170,45 @@ function changeSeats() {
   var normalList = [];
   var maleList = [];
   if (female.length != 0 || female_empty.length != 0) { //female class -> normal class
-    for (i = female.length-1; i >= 0; i--) {female[i].className = "normal";}
-    for (i = female_empty.length-1; i >= 0; i--) {female_empty[i].className = "normal";}
+    for (i = female.length-1; i >= 0; i--) {female[i].className = "normal cell";}
+    for (i = female_empty.length-1; i >= 0; i--) {female_empty[i].className = "normal cell";}
   }
   for (i = normal_empty.length-1; i >= 0; i--) {//normal_empty -> normal
     if (normal_empty[i].value.replace(" ","") != "") {
-      normal_empty[i].className = "normal";
+      normal_empty[i].className = "normal cell";
     }
   }
   for (i = male_empty.length-1; i >= 0; i--) {//male_empty -> male
     if (male_empty[i].value.replace(" ","") != "") {
-      male_empty[i].className = "male";
+      male_empty[i].className = "male cell";
     }
   }
   for (i = const_empty.length-1; i >= 0; i--) {//const_empty -> male
     if (const_empty[i].value.replace(" ","") != "") {
-      const_empty[i].className = "const";
+      const_empty[i].className = "const cell";
     }
   }
   for (i = normal.length-1; i >= 0; i--) {//normal -> normal_empty
     if (normal[i].value.replace(" ","") != "") {
-      normal[i].className = "normal";
+      normal[i].className = "normal cell";
       normalList.push(normal[i].value);
     }
     else {
-      normal[i].className = "normal_empty";
+      normal[i].className = "normal_empty cell";
     }
   }
   for (i =male.length-1; i >= 0; i--) {//male -> male_empty
     if (male[i].value.replace(" ","") != "") {
-      male[i].className = "male";
+      male[i].className = "male cell";
       maleList.push(male[i].value);
     }
     else {
-      male[i].className = "male_empty";
+      male[i].className = "male_empty cell";
     }
   }
   for (i =const_.length-1; i >= 0; i--) {//const -> const_empty
     if (const_[i].value.replace(" ","") == "") {
-      const_[i].className = "const_empty";
+      const_[i].className = "const_empty cell";
     }
   }
   normalList = shuffleSeats(normalList);
@@ -216,7 +216,7 @@ function changeSeats() {
   for (i = 0; i < normalList.length; i++) {normal[i].value = normalList[i];}
   for (i = 0; i < maleList.length; i++) {male[i].value = maleList[i];}
   if (male.length != 0 || male_empty.length != 0) { //normal class -> female class
-    for (i = normal.length-1; i >= 0; i--) {normal[i].className = "female";}
-    for (i = normal_empty.length-1; i >= 0; i--) {normal_empty[i].className = "female_empty";}
+    for (i = normal.length-1; i >= 0; i--) {normal[i].className = "female cell";}
+    for (i = normal_empty.length-1; i >= 0; i--) {normal_empty[i].className = "female_empty cell";}
   }
 }
