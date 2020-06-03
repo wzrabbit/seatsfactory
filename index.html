@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_media.css">
     <script type="text/javascript" src="function.js"></script>
   </head>
   <body onload = "onLoad()" oncontextmenu = "return false" onselectstart = "return false">
@@ -17,15 +18,15 @@
         <span id = "h1_left">자리바꾸기</span> <span id = "h1_right">공장</span>
       </h1>
         <div class = "main"></div>
-        <div class = "tip">자리바꾸기 공장에 오신 것을 환영합니다!</div>
+        <div class = "tip"><font color = "gray">자리바꾸기 공장에 오신 것을 환영합니다!</font></div>
         <div class = "menu">
-          <label><img class = "button" id = "info_button" src = "images/btn_info.png"><input class = "buttoncore" type = "button" name = "info_button" onclick ="alert('준비중입니다. 빠른 시일 내 반영하겠습니다.')" disabled></label>
-          <label><img class = "button" id = "male_button" src = "images/btn_male.png"><input class = "buttoncore" type = "button" name = "male_button" onclick ="maleButtonPressed();" disabled></label>
-          <label><img class = "button" id = "const_button" src = "images/btn_const.png"><input class = "buttoncore" type = "button" name = "const_button" onclick = "constButtonPressed();" disabled></label>
-          <label><img class = "big_button" id = "change_button" src = "images/btn_change.png"><input class = "buttoncore" type = "button" name = "change_button" onclick = "changeSeats();" disabled></label>
-          <label><img class = "button" id = "create_button" src = "images/btn_create.png"><input class = "buttoncore" type = "button" name = "create_button" onclick = "makeTableWithPrompt();" disabled></label>
-          <label><img class = "button" id = "remove_button" src = "images/btn_remove.png"><input class = "buttoncore" type = "button" name = "remove_button" onclick = "removeTableWithPrompt();" disabled></label>
-          <label><img class = "button" id = "save_button" src = "images/btn_save.png"><input class = "buttoncore" type = "button" name = "save_button" onclick = "alert('준비중입니다. 빠른 시일 내 반영하겠습니다.')" disabled></label>
+          <label><img class = "button" id = "info_button" src = "images/btn_info.png" onmouseover = "tipMsg('info');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "info_button" onclick = "alert('준비중입니다. 빠른 시일 내 반영하겠습니다.')" disabled></label>
+          <label><img class = "button" id = "male_button" src = "images/btn_male.png" onmouseover = "tipMsg('male');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "male_button" onclick ="maleButtonPressed();" disabled></label>
+          <label><img class = "button" id = "const_button" src = "images/btn_const.png" onmouseover = "tipMsg('const');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "const_button" onclick = "constButtonPressed();" disabled></label>
+          <label><img class = "big_button" id = "change_button" src = "images/btn_change.png" onmouseover = "tipMsg('change');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "change_button" onclick = "changeSeats();" disabled></label>
+          <label><img class = "button" id = "create_button" src = "images/btn_create.png" onmouseover = "tipMsg('create');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "create_button" onclick = "makeTableWithPrompt();" disabled></label>
+          <label><img class = "button" id = "remove_button" src = "images/btn_remove.png" onmouseover = "tipMsg('remove');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "remove_button" onclick = "removeTableWithPrompt();" disabled></label>
+          <label><img class = "button" id = "save_button" src = "images/btn_save.png" onmouseover = "tipMsg('save');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "save_button" onclick = "alert('준비중입니다. 빠른 시일 내 반영하겠습니다.')" disabled></label>
       </div>
     </div>
   </body>
