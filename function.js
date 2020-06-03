@@ -71,8 +71,12 @@ function makeTableAuto(rows, columns) {
 
 function removeTableWithPrompt() {
   var main = document.getElementsByClassName("main")[0];
+  var tip = document.getElementsByClassName("tip");
   var tableAmount = document.getElementsByClassName("table");
-    if (tableAmount.length == 0) {alert("지울 분단이 없습니다."); return;}
+    if (tableAmount.length == 0) {
+      tip[0].innerHTML = "<font color = '#E55B5B'>오류 : 지울 분단이 없습니다!</font>";
+       return;
+     }
   if (tableAmount.length == 1) {
     if (confirm("1분단을 지우시겠어요?")){
       main.removeChild(tableAmount[0]);
@@ -218,5 +222,40 @@ function changeSeats() {
   if (male.length != 0 || male_empty.length != 0) { //normal class -> female class
     for (i = normal.length-1; i >= 0; i--) {normal[i].className = "female cell";}
     for (i = normal_empty.length-1; i >= 0; i--) {normal_empty[i].className = "female_empty cell";}
+  }
+}
+function tipMsg(command) {
+  var tip = document.getElementsByClassName("tip");
+  var table = document.getElementsByClassName("table");
+  switch(command) {
+    case "default":
+      tip[0].innerHTML = "<font color = 'gray'>자리바꾸기 공장에 오신 것을 환영합니다!</font>";
+      break;
+    case "info":
+      tip[0].innerHTML = "감이 잡히지 않으신다면, <font color = '#ED7D31'>도움말</font>을 확인해 보세요!";
+      break;
+    case "male":
+      if (mode == 1) {tip[0].innerHTML = "<font color = '#6DE3FF'>남학생 자리 지정 </font>모드를 비활성화합니다.";}
+      else {tip[0].innerHTML = "<font color = '#6DE3FF'>남학생 자리 지정 </font>모드를 활성화합니다. 남학생 자리가 지정되면, 성별을 구분하여 자리가 배정됩니다.";}
+      break;
+    case "const":
+      if (mode == 2) {tip[0].innerHTML = "<font color = '#FFD966'>고정석 지정 </font>모드를 비활성화합니다.";}
+      else {tip[0].innerHTML = "<font color = '#FFD966'>고정석 지정 </font>모드를 활성화합니다. 고정석으로 지정된 자리는 자리가 바뀌지 않습니다.";}
+      break;
+    case "change":
+      if (table[0] == undefined) {tip[0].innerHTML = "최종적으로 자리를 바꿉니다. 그러려면, 먼저 분단을 만드셔야겠죠?"}
+      else {tip[0].innerHTML = "최종적으로 자리를 바꿉니다. 준비 되셨으면, 누르세요!";}
+      break;
+    case "create":
+      if (table.length >= 10) {tip[0].innerHTML = "<font color = '#6DFFA5'>새로운 분단</font>을 만듭니다. 근데 선생님, 분단이 대체 몇 개인가요...";}
+      else {tip[0].innerHTML = "<font color = '#6DFFA5'>새로운 분단</font>을 만듭니다. 가로, 세로 칸 수로 분단의 크기를 결정하실 수 있습니다.";}
+      break;
+    case "remove":
+      if (table.length >= 1) {tip[0].innerHTML = "분단을 지정해 <font color = '#FF5B96'>지울</font> 수 있습니다.";}
+      else {tip[0].innerHTML = "분단을 지정해 <font color = '#FF5B96'>지울</font> 수 있습니다. 우선 분단부터 만들어 보세요!";}
+      break;
+    case "save":
+      tip[0].innerHTML = "지금까지의 작업을 <font color = '#A15BFF'>저장</font>합니다. 다음에 다시 방문하실 때, 저장한 내용을 불러옵니다.";
+      break;
   }
 }
