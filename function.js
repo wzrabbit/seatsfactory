@@ -1,13 +1,30 @@
-function onLoad() {
-  mode = 0;
-  document.getElementsByName("info_button")[0].disabled = false;
-  document.getElementsByName("male_button")[0].disabled = false;
-  document.getElementsByName("const_button")[0].disabled = false;
-  document.getElementsByName("change_button")[0].disabled = false;
-  document.getElementsByName("create_button")[0].disabled = false;
-  document.getElementsByName("remove_button")[0].disabled = false;
-  document.getElementsByName("save_button")[0].disabled = false;
+document.onkeydown	= keyDown;
+function keyDown(event) {
+  if (isfocus == 1) {return;}
+    var key = event.which || event.keyCode;
+    switch(key) {
+      case 65:
+        break;
+      case 67:
+        break;
+      case 68:
+        constButtonPressed();
+        break;
+      case 70:
+        changeSeats();
+        break;
+      case 83:
+        maleButtonPressed();
+        break;
+      case 88:
+        removeTableWithPrompt();
+        break;
+      case 90:
+        makeTableWithPrompt();
+        break;
+   }
 }
+
 function makeTableWithPrompt() {
 var tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해주세요. 예시) 2,6";
   while(true) {
@@ -44,7 +61,7 @@ var tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해�
   for (i = 1; i <= columns; i++) {
     a += "<tr>";
     for (j = 1; j <= rows; j++) {
-      a += "<td><input class = 'normal cell' type = 'text' onclick = 'tableSelected(this)'></input></td>";
+      a += "<td><input class = 'normal cell' type = 'text' onclick = 'tableSelected(this)' onfocusin = 'console.log(isfocus); isfocus = 1; console.log(isfocus)' onfocusout = 'isfocus = 0; console.log(isfocus)'></input></td>";
     }
     a += "</tr>";
   }
@@ -115,6 +132,7 @@ function maleButtonPressed() {
   }
   else {
     mode = 1;
+    cell = document.getElementsByClassName("cell");
     document.getElementById("male_button").src = "images/btn_male_activated.png";
     document.getElementById("const_button").src = "images/btn_const.png";
   }
