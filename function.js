@@ -40,7 +40,6 @@ var tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해�
       var columns = Number(splitAnswer[1]);
       if (rows % 1 == 0 && rows > 0 && columns % 1 == 0 && columns > 0) {
         if (rows <= 10 && columns <= 10) {
-          console.log("정상적으로 숫자가 입력되었습니다.");
           break;
         }
         else {
@@ -61,7 +60,7 @@ var tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해�
   for (i = 1; i <= columns; i++) {
     a += "<tr>";
     for (j = 1; j <= rows; j++) {
-      a += "<td><input class = 'normal cell' type = 'text' onclick = 'tableSelected(this)' onfocusin = 'console.log(isfocus); isfocus = 1; console.log(isfocus)' onfocusout = 'isfocus = 0; console.log(isfocus)'></input></td>";
+      a += "<td><input class = 'normal cell' type = 'text' onclick = 'tableSelected(this)' onfocusin = 'isfocus = 1;' onfocusout = 'isfocus = 0;'></input></td>";
     }
     a += "</tr>";
   }
@@ -276,4 +275,52 @@ function tipMsg(command) {
       tip[0].innerHTML = "지금까지의 작업을 <font color = '#A15BFF'>저장</font>합니다. 다음에 다시 방문하실 때, 저장한 내용을 불러옵니다.";
       break;
   }
+}
+
+function setCookie(cookie_name, value, days) {
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + days);
+    var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+    console.log(cookie_name+'='+cookie_value);
+    document.cookie = cookie_name + '=' + cookie_value;
+}
+
+function getCookie(cookie_name) {
+    var x, y;
+    var val = document.cookie.split(';');
+    for (var i = 0; i < val.length; i++) {
+      x = val[i].substr(0, val[i].indexOf('='));
+      y = val[i].substr(val[i].indexOf('=') + 1);
+      x = x.replace(/^\s+|\s+$/g, '');
+      if (x == cookie_name) {
+        return unescape(y);
+      }
+   }
+}
+
+function saveSeats() {
+  var text = "작성하신 내용을 저장할까요?\n주의 : 입력하신 정보는 쿠키의 형태로 브라우저에 저장됩니다.\n서버에 저장되지 않으며, 정보를 저장하는 용도로만 사용될 것입니다.\n자세한 사항은 도움말을 참고하십시오. 계속하시겠습니까?";
+  var table = document.getElementsByClassName("table");
+  var cell = document.getElementsByClassName("cell");
+  var num = 0;
+  var data = "";
+  if (table.length == 0) {return;}
+  if (confirm(text) == false) {return;}
+  for (i = 0; i < table.length; i++) {
+    data += table[i].rows[0].cells.length + "," + table[i].rows.length;
+    if (i != table.length - 1) {data += ",";}
+  }
+  data += ":";
+  for (j = 0; j < cell.length; j++) {
+    data += cell[j].className.split(" ")[0] + "," + cell[j].value;
+    if (j != cell.length - 1) {data += ",";}
+  }
+  data = data.replace(/normal/gi, 0);
+  data = data.replace(/normal_empty/gi, 0);
+  data = data.replace(/male/gi, 1);
+  data = data.replace(/male_empty/gi, 1);
+  data = data.replace(/const/gi, 2);
+  data = data.replace(/const_empty/gi, 2);
+  console.log(data);
+  setCookie("data", data, 365);
 }
