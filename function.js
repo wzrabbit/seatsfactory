@@ -324,3 +324,8 @@ function saveSeats() {
   console.log(data);
   setCookie("data", data, 365);
 }
+
+function loadSeats() {
+  var data = getCookie(data);
+  console.log(data);
+}
