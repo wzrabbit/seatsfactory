@@ -70,7 +70,6 @@ var tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해�
 }
 
 function makeTableAuto(rows, columns) {
-  console.log(rows + "x" + columns + " 크기의 표 제작을 시작합니다...");
   var tablemaker = document.createElement("table") //새로운 테이블 엘리먼트 생성
   tablemaker.setAttribute("class","table"); //class 설정
   var a = "";
@@ -282,7 +281,6 @@ function setCookie(cookie_name, value, days) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + days);
     var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
-    console.log(cookie_name+'='+cookie_value);
     document.cookie = cookie_name + '=' + cookie_value;
 }
 
@@ -322,21 +320,18 @@ function saveSeats() {
   data = data.replace(/male_empty/gi, 1);
   data = data.replace(/const/gi, 2);
   data = data.replace(/const_empty/gi, 2);
-  console.log(data);
   setCookie("data", data, 365);
 }
 
 function loadSeats() {
   var data = getCookie("data");
-  if (data == "") {console.log("데이터 없음");  return;}
-  console.log(data + " (데이터 정상적으로 불러옴)");
+  if (data == "") {return;}
   cell = document.getElementsByClassName("cell");
   try {
     var layout = data.split("¿")[0].split("¡");
     var value = data.split("¿")[1].split("¡");
   }
   catch(e) {return;}
-  console.log("데이터 가공을 완료하였음");
   if (layout.length % 2 != 0 || value.length % 2 != 0) {return;}
   for (i = 0; i < layout.length; i++) {if (isNaN(layout[i] || layout[i] > 10)) {return;}}
   for (i = 0; i < value.length; i = i + 2) {
@@ -346,12 +341,8 @@ function loadSeats() {
     }
     else {return;}
   }
-  console.log("데이터 검증 작업을 완료하였음");
-  console.log("layout의 길이 : " + layout.length + " 데이터값 : " + layout);
-  for (i = 0; i < layout.length; i = i + 2) {
-    console.log("i값 : " + i);
-    makeTableAuto(layout[i], layout[i+1]);
-    console.log(layout[i] + "," + layout[i+1]);
+  for (k = 0; i < layout.length; k = k + 2) { //함수와의 충돌 방지를 위해 변수 변경
+    makeTableAuto(layout[k], layout[k+1]);
   } //제작 작업
   cell[0].className[0] = value[0] + " cell";
   cell[0].value = value[1];
@@ -359,5 +350,4 @@ function loadSeats() {
     cell[i/2].className = value[i];
     cell[i/2].value = value[i+1];
   }
-  console.log("성공적으로 데이터를 불러왔습니다!");
 }
