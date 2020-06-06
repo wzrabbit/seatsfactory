@@ -60,7 +60,7 @@ var tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해�
   for (i = 1; i <= columns; i++) {
     a += "<tr>";
     for (j = 1; j <= rows; j++) {
-      a += "<td><input class = 'normal cell' type = 'text' onclick = 'tableSelected(this)' onfocusin = 'isfocus = 1;' onfocusout = 'isfocus = 0;'></input></td>";
+      a += "<td><input class = 'normal cell' type = 'text' onclick = 'tableSelected(this)' onfocusin = 'isfocus = 1;' onfocusout = 'isfocus = 0;' onkeyup = 'this.value = this.value.replace(/¡/gi, \"\").replace(/¿/gi, \"\");'></input></td>";
     }
     a += "</tr>";
   }
@@ -76,7 +76,7 @@ function makeTableAuto(rows, columns) {
   for (i = 1; i <= columns; i++) {
     a += "<tr>";
     for (j = 1; j <= rows; j++) {
-      a += "<td><input class = 'normal cell' type = 'text' onclick = 'tableSelected()'></input></td>";
+      a += "<td><input class = 'normal cell' type = 'text' onclick = 'tableSelected(this)' onfocusin = 'isfocus = 1;' onfocusout = 'isfocus = 0;' onkeyup = 'this.value = this.value.replace(/¡/gi, \"\").replace(/¿/gi, \"\");'></input></td>";
     }
     a += "</tr>";
   }
@@ -307,13 +307,13 @@ function saveSeats() {
   if (table.length == 0) {return;}
   if (confirm(text) == false) {return;}
   for (i = 0; i < table.length; i++) {
-    data += table[i].rows[0].cells.length + "," + table[i].rows.length;
-    if (i != table.length - 1) {data += ",";}
+    data += table[i].rows[0].cells.length + "¡" + table[i].rows.length;
+    if (i != table.length - 1) {data += "¡";}
   }
-  data += ":";
+  data += "¿";
   for (j = 0; j < cell.length; j++) {
-    data += cell[j].className.split(" ")[0] + "," + cell[j].value;
-    if (j != cell.length - 1) {data += ",";}
+    data += cell[j].className.split(" ")[0] + "¡" + cell[j].value.replace(/¿/gi, "").replace(/¡/, "");
+    if (j != cell.length - 1) {data += "¡";}
   }
   data = data.replace(/normal/gi, 0);
   data = data.replace(/normal_empty/gi, 0);
@@ -327,5 +327,29 @@ function saveSeats() {
 
 function loadSeats() {
   var data = getCookie("data");
+  if (data == "") {console.log("데이터 없음");  return;}
   console.log(data);
+  cell = document.getElementsByClassName("cell");
+  try {
+    var layout = data.split("¿")[0].split("¡");
+    var value = data.split("¿")[1].split("¡");
+  }
+  catch(e) {return;}
+  if (layout.length % 2 != 0 || value.length % 2 != 0) {return;}
+  for (i = 0; i < layout.length; i++) {if (isNaN(layout[i] || layout[i] > 10)) {return;}} //검증 작업
+  for (i = 0; i < value.length; i = i + 2) {
+    if (isNaN(value[i])) {return;}
+    if (value[i] == 0 || value[i] == 1 || value[i] == 2) {
+      value[i] = value[i].replace(0, "normal").replace(1, "male").replace(2, "const");
+    }
+    else {return;}
+  }
+  for (i = 0; i < layout.length; i = i + 2) {makeTableAuto(layout[i], layout[i + 1]);} //제작 작업
+  cell[0].className[0] = value[0] + " cell";
+  cell[0].value = value[1];
+  for (i = 2; i < value.length; i = i + 2) {
+    cell[i/2].className[0] = value[i]; + " cell";
+    cell[i/2].value = value[i+1];
+  }
+  console.log("성공적으로 데이터를 불러왔습니다!");
 }
