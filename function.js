@@ -328,15 +328,16 @@ function saveSeats() {
 function loadSeats() {
   var data = getCookie("data");
   if (data == "") {console.log("데이터 없음");  return;}
-  console.log(data);
+  console.log(data + " (데이터 정상적으로 불러옴)");
   cell = document.getElementsByClassName("cell");
   try {
     var layout = data.split("¿")[0].split("¡");
     var value = data.split("¿")[1].split("¡");
   }
   catch(e) {return;}
+  console.log("데이터 가공을 완료하였음");
   if (layout.length % 2 != 0 || value.length % 2 != 0) {return;}
-  for (i = 0; i < layout.length; i++) {if (isNaN(layout[i] || layout[i] > 10)) {return;}} //검증 작업
+  for (i = 0; i < layout.length; i++) {if (isNaN(layout[i] || layout[i] > 10)) {return;}}
   for (i = 0; i < value.length; i = i + 2) {
     if (isNaN(value[i])) {return;}
     if (value[i] == 0 || value[i] == 1 || value[i] == 2) {
@@ -344,6 +345,7 @@ function loadSeats() {
     }
     else {return;}
   }
+  console.log("데이터 검증 작업을 완료하였음");
   for (i = 0; i < layout.length; i = i + 2) {makeTableAuto(layout[i], layout[i + 1]);} //제작 작업
   cell[0].className[0] = value[0] + " cell";
   cell[0].value = value[1];
