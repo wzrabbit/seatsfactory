@@ -70,6 +70,7 @@ var tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해�
 }
 
 function makeTableAuto(rows, columns) {
+  console.log(rows + "x" + columns + " 크기의 표 제작을 시작합니다...");
   var tablemaker = document.createElement("table") //새로운 테이블 엘리먼트 생성
   tablemaker.setAttribute("class","table"); //class 설정
   var a = "";
