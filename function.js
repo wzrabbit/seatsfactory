@@ -334,7 +334,7 @@ function loadSeats() {
   }
   catch(e) {return;}
   if (layout.length % 2 != 0 || value.length % 2 != 0) {return;}
-  for (i = 0; i < layout.length; i++) {if (isNaN(layout[i] || layout[i] > 30)) {return;}}
+  for (i = 0; i < layout.length; i++) {if (isNaN(layout[i]) || layout[i] > 30)) {return;}}
   for (i = 0; i < value.length; i = i + 2) {
     if (isNaN(value[i])) {return;}
     if (value[i] == 0 || value[i] == 1 || value[i] == 2 || value[i] == 3) {
@@ -346,7 +346,7 @@ function loadSeats() {
     for (k = 0; k < layout.length; k = k + 2) { //함수와의 충돌 방지를 위해 변수 변경
       makeTableAuto(layout[k], layout[k+1]);
     } //제작 작업
-    cell[0].className[0] = value[0] + " cell";
+    cell[0].className[0] = value[0];
     cell[0].value = value[1];
     for (i = 2; i < value.length; i = i + 2) {
       cell[i/2].className = value[i];
