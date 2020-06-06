@@ -350,7 +350,7 @@ function loadSeats() {
   cell[0].className[0] = value[0] + " cell";
   cell[0].value = value[1];
   for (i = 2; i < value.length; i = i + 2) {
-    cell[i/2].className[0] = value[i]; + " cell";
+    cell[i/2].className = value[i]; + " cell";
     cell[i/2].value = value[i+1];
   }
   console.log("성공적으로 데이터를 불러왔습니다!");
