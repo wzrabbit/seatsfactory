@@ -318,7 +318,7 @@ function saveSeats() {
     data += cell[j].className.split(" ")[0] + "¡" + cell[j].value.replace(/¿/gi, "").replace(/¡/, "");
     if (j != cell.length - 1) {data += "¡";}
   }
-  data = data.replace(/normal_empty/gi, 0).replace(/male_empty/gi, 1).replace(/const_empty/gi, 2).replace(/female_empty/gi, 3).replace(/normal/gi, 0).replace(/male/gi, 1).replace(/const/gi, 2).replace(/female/gi, 3);
+  data = data.replace(/normal_empty/gi, 0).replace(/female_empty/gi, 3).replace(/const_empty/gi, 2).replace(/male_empty/gi, 1).replace(/normal/gi, 0).replace(/female/gi, 3).replace(/const/gi, 2).replace(/male/gi, 1);
   setCookie("data", data, 365);
 }
 
