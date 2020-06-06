@@ -6,6 +6,7 @@ function keyDown(event) {
       case 65:
         break;
       case 67:
+        saveSeats();
         break;
       case 68:
         constButtonPressed();
@@ -319,6 +320,7 @@ function saveSeats() {
     if (j != cell.length - 1) {data += "¡";}
   }
   data = data.replace(/normal_empty/gi, 0).replace(/female_empty/gi, 3).replace(/const_empty/gi, 2).replace(/male_empty/gi, 1).replace(/normal/gi, 0).replace(/female/gi, 3).replace(/const/gi, 2).replace(/male/gi, 1);
+  console.log(data);
   setCookie("data", data, 365);
 }
 
