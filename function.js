@@ -347,11 +347,11 @@ function loadSeats() {
     else {return;}
   }
   console.log("데이터 검증 작업을 완료하였음");
-  console.log("layout의 길이 : " + layout.length + " 데이터값 : " + layout)
+  console.log("layout의 길이 : " + layout.length + " 데이터값 : " + layout);
   for (i = 0; i < layout.length; i = i + 2) {
     console.log("i값 : " + i);
     makeTableAuto(layout[i], layout[i+1]);
-    console.log(layout[i] + "," + layout[i+1];
+    console.log(layout[i] + "," + layout[i+1]);
   } //제작 작업
   cell[0].className[0] = value[0] + " cell";
   cell[0].value = value[1];
