@@ -272,7 +272,13 @@ function tipMsg(command) {
       else {tip[0].innerHTML = "분단을 지정해 <font color = '#FF5B96'>지울</font> 수 있습니다. 우선 분단부터 만들어 보세요!";}
       break;
     case "save":
-      tip[0].innerHTML = "지금까지의 작업을 <font color = '#A15BFF'>저장</font>합니다. 다음에 다시 방문하실 때, 저장한 내용을 불러옵니다.";
+      tip[0].innerHTML = "지금까지의 작업을 <font color = '#A15BFF'>저장</font>합니다. 다음에 다시 방문하실 때, 저장하신 내용을 불러옵니다.";
+      break;
+    case "saved":
+      tip[0].innerHTML = "지금까지의 작업이 <font color = '#A15BFF'>저장</font>되었습니다!";
+      break;
+    case "load":
+      tip[0].innerHTML = "<font color = 'gray'>다시 돌아오신 것을 환영합니다! 이전에 저장하셨던 내용을 불러왔어요!</font>";
       break;
   }
 }
@@ -299,6 +305,7 @@ function getCookie(cookie_name) {
 
 function saveSeats() {
   var text = "작성하신 내용을 저장할까요?\n주의 : 입력하신 정보는 쿠키의 형태로 브라우저에 저장됩니다.\n서버에 저장되지 않으며, 정보를 저장하는 용도로만 사용될 것입니다.\n자세한 사항은 도움말을 참고하십시오. 계속하시겠습니까?";
+  if (document.cookie != "") {text = "작성하신 내용을 저장할까요?\n주의 : 기존 데이터를 덮어씌우게 됩니다."}
   var table = document.getElementsByClassName("table");
   var cell = document.getElementsByClassName("cell");
   var num = 0;
@@ -314,13 +321,9 @@ function saveSeats() {
     data += cell[j].className.split(" ")[0] + "¡" + cell[j].value.replace(/¿/gi, "").replace(/¡/, "");
     if (j != cell.length - 1) {data += "¡";}
   }
-  data = data.replace(/normal/gi, 0);
-  data = data.replace(/normal_empty/gi, 0);
-  data = data.replace(/male/gi, 1);
-  data = data.replace(/male_empty/gi, 1);
-  data = data.replace(/const/gi, 2);
-  data = data.replace(/const_empty/gi, 2);
+  data = data.replace(/normal/gi, 0).replace(/normal_empty/gi, 0).data.replace(/male/gi, 1).data.replace(/male_empty/gi, 1).data.replace(/const/gi, 2).data.replace(/const_empty/gi, 2).replace(/female/gi, 3).replace(/female_empty/gi, 3);
   setCookie("data", data, 365);
+  tipMsg("saved");
 }
 
 function loadSeats() {
@@ -336,18 +339,21 @@ function loadSeats() {
   for (i = 0; i < layout.length; i++) {if (isNaN(layout[i] || layout[i] > 10)) {return;}}
   for (i = 0; i < value.length; i = i + 2) {
     if (isNaN(value[i])) {return;}
-    if (value[i] == 0 || value[i] == 1 || value[i] == 2) {
-      value[i] = value[i].replace(0, "normal cell").replace(1, "male cell").replace(2, "const cell");
+    if (value[i] == 0 || value[i] == 1 || value[i] == 2 || value[i] == 3) {
+      value[i] = value[i].replace(0, "normal cell").replace(1, "male cell").replace(2, "const cell").replace(3, "female cell");
     }
     else {return;}
   }
-  for (k = 0; k < layout.length; k = k + 2) { //함수와의 충돌 방지를 위해 변수 변경
-    makeTableAuto(layout[k], layout[k+1]);
-  } //제작 작업
-  cell[0].className[0] = value[0] + " cell";
-  cell[0].value = value[1];
-  for (i = 2; i < value.length; i = i + 2) {
-    cell[i/2].className = value[i];
-    cell[i/2].value = value[i+1];
-  }
+  try {
+    for (k = 0; k < layout.length; k = k + 2) { //함수와의 충돌 방지를 위해 변수 변경
+      makeTableAuto(layout[k], layout[k+1]);
+    } //제작 작업
+    cell[0].className[0] = value[0] + " cell";
+    cell[0].value = value[1];
+    for (i = 2; i < value.length; i = i + 2) {
+      cell[i/2].className = value[i];
+      cell[i/2].value = value[i+1];
+    }
+  } catch(e) {return;}
+tipMsg("load");
 }
