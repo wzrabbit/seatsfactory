@@ -278,7 +278,7 @@ function tipMsg(command) {
       tip[0].innerHTML = "지금까지의 작업이 <font color = '#A15BFF'>저장</font>되었습니다!";
       break;
     case "load":
-      tip[0].innerHTML = "<font color = 'gray'>다시 돌아오신 것을 환영합니다! 이전에 저장하셨던 내용을 불러왔어요!</font>";
+      tip[0].innerHTML = "다시 돌아오신 것을 환영합니다! 이전에 저장하셨던 내용을 불러왔어요!";
       break;
   }
 }
@@ -321,7 +321,7 @@ function saveSeats() {
     data += cell[j].className.split(" ")[0] + "¡" + cell[j].value.replace(/¿/gi, "").replace(/¡/, "");
     if (j != cell.length - 1) {data += "¡";}
   }
-  data = data.replace(/normal/gi, 0).replace(/normal_empty/gi, 0).data.replace(/male/gi, 1).data.replace(/male_empty/gi, 1).data.replace(/const/gi, 2).data.replace(/const_empty/gi, 2).replace(/female/gi, 3).replace(/female_empty/gi, 3);
+  data = data.replace(/normal/gi, 0).replace(/normal_empty/gi, 0).replace(/male/gi, 1).replace(/male_empty/gi, 1).replace(/const/gi, 2).replace(/const_empty/gi, 2).replace(/female/gi, 3).replace(/female_empty/gi, 3);
   setCookie("data", data, 365);
   tipMsg("saved");
 }
