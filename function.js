@@ -39,11 +39,11 @@ var tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해�
       var rows = Number(splitAnswer[0]);
       var columns = Number(splitAnswer[1]);
       if (rows % 1 == 0 && rows > 0 && columns % 1 == 0 && columns > 0) {
-        if (rows <= 10 && columns <= 10) {
+        if (rows <= 30 && columns <= 30) {
           break;
         }
         else {
-          tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해주세요. 예시) 2,6\n[ ! ] 너무 큰 수는 입력할 수 없어요! 10 이하의 수로 입력해 주시겠어요?";
+          tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해주세요. 예시) 2,6\n[ ! ] 너무 큰 수는 입력할 수 없어요! 30 이하의 수로 입력해 주시겠어요?";
         }
       }
       else {
@@ -274,9 +274,6 @@ function tipMsg(command) {
     case "save":
       tip[0].innerHTML = "지금까지의 작업을 <font color = '#A15BFF'>저장</font>합니다. 다음에 다시 방문하실 때, 저장하신 내용을 불러옵니다.";
       break;
-    case "saved":
-      tip[0].innerHTML = "지금까지의 작업이 <font color = '#A15BFF'>저장</font>되었습니다!";
-      break;
     case "load":
       tip[0].innerHTML = "다시 돌아오신 것을 환영합니다! 이전에 저장하셨던 내용을 불러왔어요!";
       break;
@@ -321,9 +318,8 @@ function saveSeats() {
     data += cell[j].className.split(" ")[0] + "¡" + cell[j].value.replace(/¿/gi, "").replace(/¡/, "");
     if (j != cell.length - 1) {data += "¡";}
   }
-  data = data.replace(/normal/gi, 0).replace(/normal_empty/gi, 0).replace(/male/gi, 1).replace(/male_empty/gi, 1).replace(/const/gi, 2).replace(/const_empty/gi, 2).replace(/female/gi, 3).replace(/female_empty/gi, 3);
+  data = data.replace(/normal_empty/gi, 0).replace(/male_empty/gi, 1).replace(/const_empty/gi, 2).replace(/female_empty/gi, 3).replace(/normal/gi, 0).replace(/male/gi, 1).replace(/const/gi, 2).replace(/female/gi, 3);
   setCookie("data", data, 365);
-  tipMsg("saved");
 }
 
 function loadSeats() {
@@ -336,7 +332,7 @@ function loadSeats() {
   }
   catch(e) {return;}
   if (layout.length % 2 != 0 || value.length % 2 != 0) {return;}
-  for (i = 0; i < layout.length; i++) {if (isNaN(layout[i] || layout[i] > 10)) {return;}}
+  for (i = 0; i < layout.length; i++) {if (isNaN(layout[i] || layout[i] > 30)) {return;}}
   for (i = 0; i < value.length; i = i + 2) {
     if (isNaN(value[i])) {return;}
     if (value[i] == 0 || value[i] == 1 || value[i] == 2 || value[i] == 3) {
