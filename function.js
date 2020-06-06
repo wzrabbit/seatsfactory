@@ -341,7 +341,7 @@ function loadSeats() {
     }
     else {return;}
   }
-  for (k = 0; i < layout.length; k = k + 2) { //함수와의 충돌 방지를 위해 변수 변경
+  for (k = 0; k < layout.length; k = k + 2) { //함수와의 충돌 방지를 위해 변수 변경
     makeTableAuto(layout[k], layout[k+1]);
   } //제작 작업
   cell[0].className[0] = value[0] + " cell";
