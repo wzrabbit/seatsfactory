@@ -334,7 +334,7 @@ function loadSeats() {
   }
   catch(e) {return;}
   if (layout.length % 2 != 0 || value.length % 2 != 0) {return;}
-  for (i = 0; i < layout.length; i++) {if (isNaN(layout[i]) || layout[i] > 30)) {return;}}
+  for (i = 0; i < layout.length; i++) {if (isNaN(layout[i]) || layout[i] > 30) {return;}}
   for (i = 0; i < value.length; i = i + 2) {
     if (isNaN(value[i])) {return;}
     if (value[i] == 0 || value[i] == 1 || value[i] == 2 || value[i] == 3) {
