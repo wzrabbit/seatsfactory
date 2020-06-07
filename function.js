@@ -347,7 +347,7 @@ function loadSeats() {
       makeTableAuto(layout[k], layout[k+1]);
     } //제작 작업
     console.log(value);
-    cell[0].className[0] = value[0];
+    cell[0].className = value[0];
     cell[0].value = value[1]; console.log(value[0]);
     for (i = 2; i < value.length; i = i + 2) {
       cell[i/2].className = value[i]; console.log(value[i]);
