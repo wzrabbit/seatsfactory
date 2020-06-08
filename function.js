@@ -329,7 +329,7 @@ function saveSeats() {
   }
   setCookie("data0", slice, 365);
   for (i = 0; i <= slice - 1; i++) {
-    setCookie("data" + i, data.substring(600i, 600i + 600), 365);
+    setCookie("data" + i, data.substring(600 * i, 600 * i + 600), 365);
   }
   if (lastslice != 0) {
     setCookie("data" + slice, data.substring(600*slice, 600*slice + lastslice));
