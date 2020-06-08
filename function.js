@@ -337,7 +337,7 @@ function saveSeats() {
 }
 
 function loadSeats() {
-  if (data0 == "" || data1 == "") {return;}
+  if (getCookie("data0") == "" || getCookie("data1") == "") {return;}
   var repeat = Number(getCookie("data0"));
   var data = "";
   for (i = 1; i <= repeat; i++) {
