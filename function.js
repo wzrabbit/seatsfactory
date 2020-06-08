@@ -328,11 +328,11 @@ function saveSeats() {
     lastslice = data.length % 600; console.log("마지막 길이 : " +  lastslice);
   }
   setCookie("data0", slice, 365);
-  for (i = 1; i <= slice - 1; i++) {
+  for (i = 1; i <= slice-1; i++) {
     setCookie("data" + i, data.substring(600 * i - 1, 600 * i - 1 + 600), 365);
   }
   if (lastslice != 0) {
-    setCookie("data" + slice, data.substring(600*slice, 600*slice + lastslice));
+    setCookie("data" + slice, data.substring(600*slice, 600*slice + lastslice), 365);
   }
 }
 
