@@ -332,7 +332,7 @@ function saveSeats() {
     setCookie("data" + i, data.substring(600 * (i - 1), 600 * (i - 1) + 600), 365);
   }
   if (lastslice != 0) {
-    setCookie("data" + slice, data.substring(600*slice, 600*slice + lastslice), 365);
+    setCookie("data" + slice, data.substring(600 * (slice - 1), 600 * (slice - 1) + lastslice), 365);
   }
 }
 
