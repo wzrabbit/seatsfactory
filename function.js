@@ -337,13 +337,13 @@ function saveSeats() {
 }
 
 function loadSeats() {
+  if (data0 == "" || data1 == "") {return;}
   var repeat = Number(getCookie("data0"));
   var data = "";
   for (i = 0; i < repeat; i++) {
     data += getCookie("data" + i);
   }
   console.log("불러온 데이터 : " + data);
-  if (data == "") {return;}
   cell = document.getElementsByClassName("cell");
   try {
     var layout = data.split("¿")[0].split("¡");
