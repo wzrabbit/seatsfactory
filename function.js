@@ -322,14 +322,14 @@ function saveSeats() {
     if (j != cell.length - 1) {data += "¡";}
   }
   data = data.replace(/normal_empty/gi, 0).replace(/female_empty/gi, 3).replace(/const_empty/gi, 2).replace(/male_empty/gi, 1).replace(/normal/gi, 0).replace(/female/gi, 3).replace(/const/gi, 2).replace(/male/gi, 1);
-  if (data.length > 18000) {return; console.log("데이터의 양이 너무 많음");}
+  if (data.length > 18000) {console.log("데이터의 양이 너무 많음"); return;}
   else {
     slice = parseInt(data.length/600) + 1; console.log("데이터 개수 : " +  slice);
     lastslice = data.length % 600; console.log("마지막 길이 : " +  lastslice);
   }
   setCookie("data0", slice, 365);
   for (i = 1; i <= slice-1; i++) {
-    setCookie("data" + i, data.substring(600 * i - 1, 600 * i - 1 + 600), 365);
+    setCookie("data" + i, data.substring(600 * (i - 1), 600 * (i - 1) + 600), 365);
   }
   if (lastslice != 0) {
     setCookie("data" + slice, data.substring(600*slice, 600*slice + lastslice), 365);
