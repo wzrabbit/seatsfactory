@@ -308,6 +308,8 @@ function saveSeats() {
   var cell = document.getElementsByClassName("cell");
   var num = 0;
   var data = "";
+  var slice = 0;
+  var lastslice = 0;
   if (table.length == 0) {return;}
   if (confirm(text) == false) {return;}
   for (i = 0; i < table.length; i++) {
@@ -320,12 +322,27 @@ function saveSeats() {
     if (j != cell.length - 1) {data += "¡";}
   }
   data = data.replace(/normal_empty/gi, 0).replace(/female_empty/gi, 3).replace(/const_empty/gi, 2).replace(/male_empty/gi, 1).replace(/normal/gi, 0).replace(/female/gi, 3).replace(/const/gi, 2).replace(/male/gi, 1);
-  console.log(data);
-  setCookie("data", data, 365);
+  if (data.length > 18000) {return; console.log("데이터의 양이 너무 많음");}
+  else {
+    slice = parseInt(data.length, 600) + 1; console.log("데이터 개수 : " +  slice);
+    lastslice = data.length % 600; console.log("마지막 길이 : " +  lastslice);
+  }
+  setCookie("data0", slice, 365);
+  for (i = 0; i <= slice - 1; i++) {
+    setCookie("data" + i, data.substring(600i, 600i + 600), 365);
+  }
+  if (lastslice != 0) {
+    setCookie("data" + slice, data.substring(600*slice, 600*slice + lastslice));
+  }
 }
 
 function loadSeats() {
-  var data = getCookie("data");
+  var repeat = Number(getCookie("data0"));
+  var data = "";
+  for (i = 0; i < repeat; i++) {
+    data += getCookie("data" + i);
+  }
+  console.log("불러온 데이터 : " + data);
   if (data == "") {return;}
   cell = document.getElementsByClassName("cell");
   try {
