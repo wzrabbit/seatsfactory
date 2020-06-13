@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="function.js"></script>
     <script type="text/javascript">
@@ -16,7 +16,7 @@
       var isfocus = 0;
     </script>
   </head>
-  <body oncontextmenu = "return false" onselectstart = "return false" onload = "loadSeats();"">
+  <body oncontextmenu = "return false" onselectstart = "return false" onload = "loadSeats();">
     <div class = "layout">
       <h1>
         <span id = "h1_left">자리바꾸기</span> <span id = "h1_right">공장</span>
@@ -24,7 +24,7 @@
         <div class = "main"></div>
         <div class = "tip"><font color = "gray">자리바꾸기 공장에 오신 것을 환영합니다!</font></div>
         <div class = "menu">
-          <label><img class = "button" id = "info_button" src = "images/btn_info.png" onmouseover = "tipMsg('info');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "info_button" onclick = "alert('준비중입니다. 빠른 시일 내 반영하겠습니다.')"></label>
+          <label><img class = "button" id = "info_button" src = "images/btn_info.png" onmouseover = "tipMsg('info');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "info_button" onclick = "window.open('info.html');"></label>
           <label><img class = "button" id = "male_button" src = "images/btn_male.png" onmouseover = "tipMsg('male');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "male_button" onclick ="maleButtonPressed();"></label>
           <label><img class = "button" id = "const_button" src = "images/btn_const.png" onmouseover = "tipMsg('const');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "const_button" onclick = "constButtonPressed();"></label>
           <label><img class = "big_button" id = "change_button" src = "images/btn_change.png" onmouseover = "tipMsg('change');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "change_button" onclick = "changeSeats();"></label>
@@ -32,6 +32,8 @@
           <label><img class = "button" id = "remove_button" src = "images/btn_remove.png" onmouseover = "tipMsg('remove');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "remove_button" onclick = "removeTableWithPrompt();"></label>
           <label><img class = "button" id = "save_button" src = "images/btn_save.png" onmouseover = "tipMsg('save');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "save_button" onclick = "saveSeats();"></label>
       </div>
+    </div>
+    <!--div class = "footer">-->
     </div>
   </body>
 </html>
