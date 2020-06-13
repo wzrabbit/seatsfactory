@@ -1,28 +1,22 @@
-document.onkeydown	= keyDown;
+document.onkeydown = keyDown;
 function keyDown(event) {
   if (isfocus == 1) {return;}
     var key = event.which || event.keyCode;
     switch(key) {
-      case 65:
-        break;
-      case 67:
-        saveSeats();
-        break;
-      case 68:
-        constButtonPressed();
-        break;
-      case 70:
-        changeSeats();
-        break;
-      case 83:
-        maleButtonPressed();
-        break;
-      case 88:
-        removeTableWithPrompt();
-        break;
-      case 90:
+      case 69:
         makeTableWithPrompt();
         break;
+      case 81:
+        maleButtonPressed();
+        break;
+      case 82:
+        removeTableWithPrompt();
+        break;
+      case 87:
+        constButtonPressed();
+        break;
+      case 123:
+        return false;
    }
 }
 
