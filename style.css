@@ -241,7 +241,7 @@ animation: blink 0.075s 10, h1RightIntro 1.5s, h1RightColor 150s 1.5s infinite, 
 /* Help Page Styles*/
 .layout_help {
   width: 920px;
-  height: 4000px;
+  height: auto;
   padding-left: 40px;
   padding-right: 40px;
   margin: 0px auto;
