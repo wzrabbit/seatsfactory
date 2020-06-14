@@ -101,7 +101,7 @@ td {
   text-align: center;
   overflow: auto;
   width: 100%;
-  height: calc(100% - 192.4px);
+  height: calc(100% - 195px);
   max-width: 100%;
   box-shadow: 0px 0px 30px white;
 }
@@ -128,14 +128,20 @@ td {
   width: 100%;
   height: 100%;
 }
-.footer {
-  display: block;
-  width: 100%;
-  height: 80px;
-  margin-top: 50px;
-  background-color: black;
-  box-shadow: 0px 0px 50px black;
+.main::-webkit-scrollbar {
+  width: 15px;
 }
+.main::-webkit-scrollbar-thumb {
+  background-color: white;
+}
+.main::-webkit-scrollbar-track {
+  background-color: grey;
+  box-shadow: 0px 0px 15px black inset;
+}
+.main::-webkit-scrollbar-corner {
+  display: none;
+}
+/* Animation */
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity: 1;}
