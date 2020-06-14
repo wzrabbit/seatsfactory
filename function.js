@@ -122,25 +122,39 @@ function removeTableWithPrompt() {
 function maleButtonPressed() {
   if (mode == 1) {
     mode = 0;
-    document.getElementById("male_button").src = "images/btn_male.png";
+    try{
+      document.getElementsByClassName("malebutton on")[0].src = "images/btn_male.png";
+      document.getElementsByClassName("malebutton on")[0].className = "malebutton button off";
+    } catch(e) {}
   }
   else {
     mode = 1;
     cell = document.getElementsByClassName("cell");
-    document.getElementById("male_button").src = "images/btn_male_activated.png";
-    document.getElementById("const_button").src = "images/btn_const.png";
+    document.getElementsByClassName("malebutton off")[0].src = "images/btn_male_activated.png";
+    document.getElementsByClassName("malebutton off")[0].className = "malebutton button on";
+    try {
+      document.getElementsByClassName("constbutton on")[0].src = "images/btn_const.png";
+      document.getElementsByClassName("constbutton on")[0].className = "constbutton button off";
+    } catch(e) {}
   }
 }
 
 function constButtonPressed() {
   if (mode == 2) {
     mode = 0;
-    document.getElementById("const_button").src = "images/btn_const.png";
+    try{
+      document.getElementsByClassName("constbutton on")[0].src = "images/btn_const.png";
+      document.getElementsByClassName("constbutton on")[0].className = "constbutton button off";
+    } catch(e) {}
   }
   else {
     mode = 2;
-    document.getElementById("const_button").src = "images/btn_const_activated.png";
-    document.getElementById("male_button").src = "images/btn_male.png";
+    document.getElementsByClassName("constbutton off")[0].src = "images/btn_const_activated.png";
+    document.getElementsByClassName("constbutton off")[0].className = "constbutton button on";
+    try {
+      document.getElementsByClassName("malebutton on")[0].src = "images/btn_male.png";
+      document.getElementsByClassName("malebutton on")[0].className = "malebutton button off";
+    } catch(e) {}
   }
 }
 
