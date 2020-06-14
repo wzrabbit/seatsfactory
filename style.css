@@ -10,7 +10,7 @@ body {
   background-image: url("images/background.png");
   background-attachment: fixed;
 }
-h1{
+h1 {
   display: block;
   font-family: 'Black Han Sans', sans-serif;
   height: 60px;
@@ -243,6 +243,24 @@ animation: blink 0.075s 10, h1RightIntro 1.5s, h1RightColor 150s 1.5s infinite, 
     height: 49px;
     cursor: pointer;
   }
+  .tip {
+    font-size: 18px;
+    height: 30px;
+  }
+  .menu {
+    height: 55px;
+  }
+  .main {
+    height: calc(100% - 163px);
+  }
+  h1 {
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 3px;
+    font-size: 42px;
+  }
+}
+@media all and (max-width: 750px) {
 }
 /* Help Page Styles*/
 .layout_help {
