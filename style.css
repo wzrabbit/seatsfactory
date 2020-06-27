@@ -109,7 +109,8 @@ td {
   display: block;
   text-align: center;
   white-space: nowrap;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   width: 100%;
   height: 75px;
 }
@@ -129,16 +130,31 @@ td {
   height: 100%;
 }
 .main::-webkit-scrollbar {
-  width: 15px;
+  width: 8px;
+  height: 8px;
 }
 .main::-webkit-scrollbar-thumb {
   background-color: white;
 }
 .main::-webkit-scrollbar-track {
   background-color: grey;
-  box-shadow: 0px 0px 15px black inset;
+  box-shadow: 0px 0px 5px black inset;
 }
 .main::-webkit-scrollbar-corner {
+  display: none;
+}
+.menu::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.menu::-webkit-scrollbar-thumb {
+  background-color: white;
+}
+.menu::-webkit-scrollbar-track {
+  background-color: grey;
+  box-shadow: 0px 0px 5px black inset;
+}
+.menu::-webkit-scrollbar-corner {
   display: none;
 }
 /* Animation */
@@ -259,8 +275,6 @@ animation: blink 0.075s 10, h1RightIntro 1.5s, h1RightColor 150s 1.5s infinite, 
     padding-bottom: 3px;
     font-size: 42px;
   }
-}
-@media all and (max-width: 750px) {
 }
 /* Help Page Styles*/
 .layout_help {
