@@ -49,19 +49,7 @@ var tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해�
       tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해주세요. 예시) 2,6\n[ ! ] 예시를 참고하여 다시 입력해 주시겠어요?";
     }
   }
-  var tablemaker = document.createElement("table") //새로운 테이블 엘리먼트 생성
-  tablemaker.setAttribute("class","table"); //class 설정
-  var a = "";
-  for (i = 1; i <= columns; i++) {
-    a += "<tr>";
-    for (j = 1; j <= rows; j++) {
-      a += "<td><input class = 'normal cell' type = 'text' onclick = 'tableSelected(this)' onfocusin = 'isfocus = 1;' onfocusout = 'isfocus = 0;' onkeyup = 'this.value = this.value.replace(/¡/gi, \"\").replace(/¿/gi, \"\");'></input></td>";
-    }
-    a += "</tr>";
-  }
-  a += "</table>";
-  tablemaker.innerHTML = a; //생성한 표 삽입
-  document.getElementsByClassName("main")[0].appendChild(tablemaker);
+  makeTableAuto(rows,columns);
 }
 
 function makeTableAuto(rows, columns) {
@@ -120,32 +108,37 @@ function removeTableWithPrompt() {
 }
 
 function maleButtonPressed() {
+  var cell = document.querySelectorAll(".table .cell");
   if (mode == 1) {
     mode = 0;
     try{
       document.getElementsByClassName("malebutton on")[0].src = "images/btn_male.png";
       document.getElementsByClassName("malebutton on")[0].className = "malebutton button off";
     } catch(e) {}
+    for (i = 0; i <= cell.length - 1; i++) {cell[i].readOnly = false;}
   }
   else {
     mode = 1;
-    cell = document.getElementsByClassName("cell");
     document.getElementsByClassName("malebutton off")[0].src = "images/btn_male_activated.png";
     document.getElementsByClassName("malebutton off")[0].className = "malebutton button on";
     try {
       document.getElementsByClassName("constbutton on")[0].src = "images/btn_const.png";
       document.getElementsByClassName("constbutton on")[0].className = "constbutton button off";
     } catch(e) {}
+    console.log(cell);
+    for (i = 0; i <= cell.length - 1; i++) {cell[i].readOnly = true;}
   }
 }
 
 function constButtonPressed() {
+  var cell = document.querySelectorAll(".table .cell");
   if (mode == 2) {
     mode = 0;
     try{
       document.getElementsByClassName("constbutton on")[0].src = "images/btn_const.png";
       document.getElementsByClassName("constbutton on")[0].className = "constbutton button off";
     } catch(e) {}
+    for (i = 0; i <= cell.length - 1; i++) {cell[i].readOnly = false;}
   }
   else {
     mode = 2;
@@ -155,6 +148,7 @@ function constButtonPressed() {
       document.getElementsByClassName("malebutton on")[0].src = "images/btn_male.png";
       document.getElementsByClassName("malebutton on")[0].className = "malebutton button off";
     } catch(e) {}
+    for (i = 0; i <= cell.length - 1; i++) {cell[i].readOnly = true;}
   }
 }
 
