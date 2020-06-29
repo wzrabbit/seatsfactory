@@ -27,15 +27,31 @@ h1 {
   height:49px;
   cursor: pointer;
   vertical-align: top;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
-.big_button {
+.bigbutton {
   width: 200px;
   height: 65px;
   cursor: pointer;
+  vertical-align: top;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 .buttoncore {
   display: none;
 }
+.infobutton {background-image: url("images/btn_info.png");}
+.malebutton.on {background-image: url("images/btn_male_activated.png");}
+.malebutton.off {background-image: url("images/btn_male.png");}
+.constbutton.on {background-image: url("images/btn_const_activated.png");}
+.constbutton.off {background-image: url("images/btn_const.png");}
+.changebutton {background-image: url("images/btn_change.png");}
+.createbutton {background-image: url("images/btn_create.png");}
+.removebutton {background-image: url("images/btn_remove.png");}
+.savebutton {background-image: url("images/btn_save.png");}
 td {
   margin: 2px;
   border: none;
@@ -108,7 +124,6 @@ td {
 .menu {
   display: block;
   text-align: center;
-  white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
   width: 100%;
@@ -141,20 +156,6 @@ td {
   box-shadow: 0px 0px 5px black inset;
 }
 .main::-webkit-scrollbar-corner {
-  display: none;
-}
-.menu::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-.menu::-webkit-scrollbar-thumb {
-  background-color: white;
-}
-.menu::-webkit-scrollbar-track {
-  background-color: grey;
-  box-shadow: 0px 0px 5px black inset;
-}
-.menu::-webkit-scrollbar-corner {
   display: none;
 }
 /* Animation */
@@ -254,7 +255,7 @@ animation: blink 0.075s 10, h1RightIntro 1.5s, h1RightColor 150s 1.5s infinite, 
     cursor: pointer;
     vertical-align: top;
   }
-  .big_button {
+  .bigbutton {
     width: 150px;
     height: 49px;
     cursor: pointer;
@@ -274,6 +275,36 @@ animation: blink 0.075s 10, h1RightIntro 1.5s, h1RightColor 150s 1.5s infinite, 
     padding-top: 10px;
     padding-bottom: 3px;
     font-size: 42px;
+  }
+}
+@media all and (max-width: 730px) {
+  .infobutton {background-image: url("images/mbtn_info.png");}
+  .malebutton.on {background-image: url("images/mbtn_male_activated.png") !important;}
+  .malebutton.off {background-image: url("images/mbtn_male.png") !important;}
+  .constbutton.on {background-image: url("images/mbtn_const_activated.png") !important;}
+  .constbutton.off {background-image: url("images/mbtn_const.png") !important;}
+  .changebutton {background-image: url("images/mbtn_change.png");}
+  .createbutton {background-image: url("images/mbtn_create.png");}
+  .removebutton {background-image: url("images/mbtn_remove.png");}
+  .savebutton {background-image: url("images/mbtn_save.png");}
+  .button, .bigbutton {
+    width: 98px;
+    height: 40px;
+    margin-bottom: 5px;
+  }
+  .tip {
+    height: 5px;
+    visibility: hidden;
+  }
+  .menu {
+    height: 85px;
+  }
+}
+@media all and (max-width: 420px) {
+  .button, .bigbutton {
+    width: 23vw;
+    height: 9.42vw;
+    margin-bottom: 1vw;
   }
 }
 /* Help Page Styles*/
