@@ -25,7 +25,8 @@
       mode = 0;
     </script>
   </head>
-  <body oncontextmenu = "return false" onselectstart = "return false" onload = "loadSeats();">
+  <!-- oncontextmenu = "return false" onselectstart = "return false" -->
+  <body onload = "loadSeats();">
     <div class = "layout">
       <h1>
         <span id = "h1_left">자리바꾸기</span> <span id = "h1_right">공장</span>
@@ -33,13 +34,13 @@
         <div class = "main"></div>
         <div class = "tip"><font color = "gray">자리바꾸기 공장에 오신 것을 환영합니다!</font></div>
         <div class = "menu">
-          <label><img class = "infobutton button"  src = "images/btn_info.png" onmouseover = "tipMsg('info');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "info_button" onclick = "window.open('info.html');"></label>
-          <label><img class = "malebutton button off" src = "images/btn_male.png" onmouseover = "tipMsg('male');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "male_button" onclick ="maleButtonPressed();"></label>
-          <label><img class = "constbutton button off" src = "images/btn_const.png" onmouseover = "tipMsg('const');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "const_button" onclick = "constButtonPressed();"></label>
-          <label><img class = "changebutton big_button" src = "images/btn_change.png" onmouseover = "tipMsg('change');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "change_button" onclick = "changeSeats();"></label>
-          <label><img class = "createbutton button" src = "images/btn_create.png" onmouseover = "tipMsg('create');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "create_button" onclick = "makeTableWithPrompt();"></label>
-          <label><img class = "removebutton button"  src = "images/btn_remove.png" onmouseover = "tipMsg('remove');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "remove_button" onclick = "removeTableWithPrompt();"></label>
-          <label><img class = "savebutton button"  src = "images/btn_save.png" onmouseover = "tipMsg('save');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "save_button" onclick = "saveSeats();"></label>
+          <label><span class = "infobutton button" onmouseover = "tipMsg('info');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "info_button" onclick = "window.open('info.html');"></label>
+          <label><span class = "malebutton button off" onmouseover = "tipMsg('male');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "male_button" onclick ="maleButtonPressed();"></label>
+          <label><span class = "constbutton button off" onmouseover = "tipMsg('const');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "const_button" onclick = "constButtonPressed();"></label>
+          <label><span class = "changebutton bigbutton" onmouseover = "tipMsg('change');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "change_button" onclick = "changeSeats();"></label>
+          <label><span class = "createbutton button" onmouseover = "tipMsg('create');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "create_button" onclick = "makeTableWithPrompt();"></label>
+          <label><span class = "removebutton button" onmouseover = "tipMsg('remove');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "remove_button" onclick = "removeTableWithPrompt();"></label>
+          <label><span class = "savebutton button" onmouseover = "tipMsg('save');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "save_button" onclick = "saveSeats();"></label>
       </div>
     </div>
     <!--div class = "footer">-->
