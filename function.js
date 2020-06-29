@@ -1,3 +1,5 @@
+console.log("콘솔 창 사용 시 사이트에 예기치 못한 오류가 발생할 수 있습니다.\n사용을 자제해 주시기 바랍니다.\n자리바꾸기 공장을 이용해 주셔서 감사합니다.\n제작 : 폴라리스(polariswiz)")
+document.getElementsByClassName("infobutton")[0].addEventListener("click", function(event) {window.open('info.html')});
 document.onkeydown = keyDown;
 function keyDown(event) {
   if (isfocus == 1) {return;}
@@ -111,21 +113,13 @@ function maleButtonPressed() {
   var cell = document.querySelectorAll(".table .cell");
   if (mode == 1) {
     mode = 0;
-    try{
-      document.getElementsByClassName("malebutton on")[0].src = "images/btn_male.png";
-      document.getElementsByClassName("malebutton on")[0].className = "malebutton button off";
-    } catch(e) {}
+    try{document.getElementsByClassName("malebutton on")[0].className = "malebutton button off";} catch(e) {}
     for (i = 0; i <= cell.length - 1; i++) {cell[i].readOnly = false;}
   }
   else {
     mode = 1;
-    document.getElementsByClassName("malebutton off")[0].src = "images/btn_male_activated.png";
     document.getElementsByClassName("malebutton off")[0].className = "malebutton button on";
-    try {
-      document.getElementsByClassName("constbutton on")[0].src = "images/btn_const.png";
-      document.getElementsByClassName("constbutton on")[0].className = "constbutton button off";
-    } catch(e) {}
-    console.log(cell);
+    try {document.getElementsByClassName("constbutton on")[0].className = "constbutton button off";} catch(e) {}
     for (i = 0; i <= cell.length - 1; i++) {cell[i].readOnly = true;}
   }
 }
@@ -134,20 +128,13 @@ function constButtonPressed() {
   var cell = document.querySelectorAll(".table .cell");
   if (mode == 2) {
     mode = 0;
-    try{
-      document.getElementsByClassName("constbutton on")[0].src = "images/btn_const.png";
-      document.getElementsByClassName("constbutton on")[0].className = "constbutton button off";
-    } catch(e) {}
+    try{document.getElementsByClassName("constbutton on")[0].className = "constbutton button off";} catch(e) {}
     for (i = 0; i <= cell.length - 1; i++) {cell[i].readOnly = false;}
   }
   else {
     mode = 2;
-    document.getElementsByClassName("constbutton off")[0].src = "images/btn_const_activated.png";
     document.getElementsByClassName("constbutton off")[0].className = "constbutton button on";
-    try {
-      document.getElementsByClassName("malebutton on")[0].src = "images/btn_male.png";
-      document.getElementsByClassName("malebutton on")[0].className = "malebutton button off";
-    } catch(e) {}
+    try {document.getElementsByClassName("malebutton on")[0].className = "malebutton button off";} catch(e) {}
     for (i = 0; i <= cell.length - 1; i++) {cell[i].readOnly = true;}
   }
 }
@@ -324,10 +311,10 @@ function saveSeats() {
     if (j != cell.length - 1) {data += "¡";}
   }
   data = data.replace(/normal_empty/gi, 0).replace(/female_empty/gi, 3).replace(/const_empty/gi, 2).replace(/male_empty/gi, 1).replace(/normal/gi, 0).replace(/female/gi, 3).replace(/const/gi, 2).replace(/male/gi, 1);
-  if (data.length > 18000) {console.log("데이터의 양이 너무 많음"); return;}
+  if (data.length > 18000) {return;}
   else {
-    slice = parseInt(data.length/600) + 1; console.log("데이터 개수 : " +  slice);
-    lastslice = data.length % 600; console.log("마지막 길이 : " +  lastslice);
+    slice = parseInt(data.length/600) + 1;
+    lastslice = data.length % 600;
   }
   setCookie("data0", slice, 365);
   for (i = 1; i <= slice-1; i++) {
@@ -345,7 +332,6 @@ function loadSeats() {
   for (i = 1; i <= repeat; i++) {
     data += getCookie("data" + i);
   }
-  console.log("불러온 데이터 : " + data);
   cell = document.getElementsByClassName("cell");
   try {
     var layout = data.split("¿")[0].split("¡");
@@ -365,11 +351,10 @@ function loadSeats() {
     for (k = 0; k < layout.length; k = k + 2) { //함수와의 충돌 방지를 위해 변수 변경
       makeTableAuto(layout[k], layout[k+1]);
     } //제작 작업
-    console.log(value);
     cell[0].className = value[0];
-    cell[0].value = value[1]; console.log(value[0]);
+    cell[0].value = value[1];
     for (i = 2; i < value.length; i = i + 2) {
-      cell[i/2].className = value[i]; console.log(value[i]);
+      cell[i/2].className = value[i];
       cell[i/2].value = value[i+1];
     }
   } catch(e) {return;}
