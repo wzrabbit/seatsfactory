@@ -1,5 +1,4 @@
-console.log("콘솔 창 사용 시 사이트에 예기치 못한 오류가 발생할 수 있습니다.\n사용을 자제해 주시기 바랍니다.\n자리바꾸기 공장을 이용해 주셔서 감사합니다.\n제작 : 폴라리스(polariswiz)")
-document.getElementsByClassName("infobutton")[0].addEventListener("click", function(event) {window.open('info.html')});
+console.log("콘솔 창 사용 시 사이트에 예기치 못한 오류가 발생할 수 있습니다.\n사용을 자제해 주시기 바랍니다.\n자리바꾸기 공장을 이용해 주셔서 감사합니다.\n제작 : 폴라리스(polariswiz)");
 document.onkeydown = keyDown;
 function keyDown(event) {
   if (isfocus == 1) {return;}
