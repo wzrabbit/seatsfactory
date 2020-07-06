@@ -271,9 +271,9 @@ animation: blink 0.075s 10, h1RightIntro 1.5s, h1RightColor 150s 1.5s infinite, 
     height: calc(100% - 163px);
   }
   h1 {
-    height: 50px;
     padding-top: 10px;
     padding-bottom: 3px;
+    height: 50px;
     font-size: 42px;
   }
 }
@@ -306,48 +306,4 @@ animation: blink 0.075s 10, h1RightIntro 1.5s, h1RightColor 150s 1.5s infinite, 
     height: 9.42vw;
     margin-bottom: 1vw;
   }
-}
-/* Help Page Styles*/
-.layout_help {
-  width: 920px;
-  height: auto;
-  padding-left: 40px;
-  padding-right: 40px;
-  margin: 0px auto;
-  overflow: hidden;
-  box-shadow: 0px 0px 30px white;
-  vertical-align: middle;
-}
-.h1_help {
-  display: inline-block;
-  margin-left: 160px;
-  margin-right: 160px;
-  width: 600px;
-}
-.h2_help {
-  text-align: center;
-  margin-bottom: 60px;
-}
-.content {
-  text-align: center;
-  vertical-align: top;
-}
-.paragraph {
-  font-size: 16px;
-  color: white;
-  font-family: 'NanumSquare', sans-serif;
-  line-height: 1.5;
-}
-.image {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  text-align: center;
-}
-.blind {
-    position: absolute;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
 }
