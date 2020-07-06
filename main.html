@@ -30,7 +30,13 @@
       <h1>
         <a href = "https://polariswiz.github.io/seatsfactory" style = "text-decoration: none;"><span id = "h1_left">자리바꾸기</span> <span id = "h1_right">공장</span></a>
       </h1>
-        <div class = "main"></div>
+        <div class = "main">
+          <div class = "sleep" onClick = "makeTableWithPrompt();">
+            <img src = "images/sleep.png">
+            <div id = "sleep_title">분단이 하나도 없네요!</div>
+            <div id = "sleep_content">여기를 클릭해 첫 분단을 만들어 보세요.</div>
+          </div>
+        </div>
         <div class = "tip"><font color = "gray">자리바꾸기 공장에 오신 것을 환영합니다!</font></div>
         <div class = "menu">
           <label><span class = "infobutton button" onmouseover = "tipMsg('info');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "info_button" onclick = "alert('준비중입니다. 빠른 시일 내 반영하겠습니다.');"></label>
