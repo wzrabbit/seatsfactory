@@ -67,6 +67,7 @@ function makeTableAuto(rows, columns) {
   a += "</table>";
   tablemaker.innerHTML = a; //생성한 표 삽입
   document.getElementsByClassName("main")[0].appendChild(tablemaker);
+  document.getElementsByClassName("sleep")[0].style.display = "none";
 }
 
 function removeTableWithPrompt() {
@@ -80,6 +81,7 @@ function removeTableWithPrompt() {
   if (tableAmount.length == 1) {
     if (confirm("1분단을 지우시겠어요?")){
       main.removeChild(tableAmount[0]);
+      document.getElementsByClassName("sleep")[0].style.display = "block";
     }
     return;
   }
