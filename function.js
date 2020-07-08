@@ -201,6 +201,7 @@ function afterRemove(value) {
       msg.innerHTML = "<span style = 'font-weight: 600; color: yellow;'>" + value + "</span>분단을 지웠습니다!";
       input.readOnly = false;
       input.disabled = false;
+      input.placeholder = table.length;
     }
   }
 }
