@@ -22,6 +22,9 @@ h1 {
   color: #2F343D;
   text-shadow: 0px 0px 3px black;
 }
+input:focus {
+  outline: none;
+}
 .button {
   width: 120px;
   height:49px;
@@ -108,9 +111,6 @@ td {
   font-family: 'Nanum Gothic', sans-serif;
   background-color: transparent;
 }
-.cell:focus {
-  outline: none;
-}
 .main {
   display: block;
   white-space: nowrap; /* 표 줄바뀜 방지 */
@@ -122,7 +122,7 @@ td {
   box-shadow: 0px 0px 30px white;
 }
 .sleep {
-  display: block;
+  display: inline-block;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -137,6 +137,87 @@ td {
   font-family: "NanumSquare", sans-serif;
   font-size: 20px;
   color: gray;
+}
+.createbox, .removebox {
+  position: absolute;
+  width: 400px;
+  height: 100px;
+  top: calc(100% - 115px);
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background-color: black;
+  border: 3px solid #6DFFA5;
+  box-shadow: 0px 0px 7px #6DFFA5;
+  font-family: "Jua", sans-serif;
+  color: white;
+}
+.removebox {
+  border: 3px solid #FF5B96;
+  box-shadow: 0px 0px 7px #FF5B96;
+}
+.x_button span:nth-child(1), .x_button span:nth-child(2) {
+  width: 25px;
+  height: 4px;
+  background-color: #6DFFA5;
+  box-shadow: 0px 0px 7px #6DFFA5;
+  border-radius: 3px;
+  position: absolute;
+  right: 0px;
+  top: 10px;
+}
+.x_button span:nth-child(1) {
+  transform: rotate(45deg);
+}
+.x_button span:nth-child(2) {
+  transform: rotate(-45deg);
+}
+.removebox .x_button span {
+  background-color: #FF5B96;
+  box-shadow: 0px 0px 7px #FF5B96;
+}
+.createbox_title, .removebox_title {
+  font-family: "Jua", sans-serif;
+  font-size: 20px;
+  color: #B9FFD4;
+}
+.removebox_title {color: #FFB3CE;}
+.createbox_msg, .removebox_msg {
+  font-family: "NanumSquare", sans-serif;
+  height: 20px;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.createbox_input, .removebox_input {
+  width: 150px;
+  height: 30px;
+  background-color: black;
+  border: 2px solid #6DFFA5;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #6DFFA5;
+  font-family: "Jua", sans-serif;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+}
+.removebox_input {
+  border: 2px solid #FF5B96;
+  box-shadow: 0px 0px 5px #FF5B96;
+}
+.createbox_button, .removebox_button {
+  margin-left: 20px;
+  width: 74px;
+  height: 34px;
+  background-color: black;
+  border: 2px solid #6DFFA5;
+  box-shadow: 0px 0px 5px #6DFFA5;
+  font-family: "Jua", sans-serif;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+}
+.removebox_button {
+  border: 2px solid #FF5B96;
+  box-shadow: 0px 0px 5px #FF5B96;
 }
 .menu {
   display: block;
