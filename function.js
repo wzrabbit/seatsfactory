@@ -196,6 +196,7 @@ function afterRemove(value) {
       input.readOnly = true;
       input.disabled = true;
       input.placeholder = "지울 분단 없음!";
+      document.getElementsByClassName("sleep")[0].style.display = "inline-block";
     }
     else {
       msg.innerHTML = "<span style = 'font-weight: 600; color: yellow;'>" + value + "</span>분단을 지웠습니다!";
