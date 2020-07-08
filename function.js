@@ -1,59 +1,133 @@
 console.log("콘솔 창 사용 시 사이트에 예기치 못한 오류가 발생할 수 있습니다.\n사용을 자제해 주시기 바랍니다.\n자리바꾸기 공장을 이용해 주셔서 감사합니다.\n제작 : 폴라리스(polariswiz)");
+
+var isfocus = 0;
+var mode = 0;
+var macro = [2, 5];
+var remove = 0;
+
 document.onkeydown = keyDown;
 function keyDown(event) {
-  if (isfocus == 1) {return;}
-    var key = event.which || event.keyCode;
-    switch(key) {
-      case 69:
-        makeTableWithPrompt();
-        break;
-      case 81:
-        maleButtonPressed();
-        break;
-      case 82:
-        removeTableWithPrompt();
-        break;
-      case 87:
-        constButtonPressed();
-        break;
-      case 123:
-        return false;
-   }
+  var key = event.which || event.keyCode;
+  if (isfocus == 1 || key == 123) {return false;}
+  switch(key) {
+    case 69:
+     createButtonPressed();
+      break;
+    case 81:
+      maleButtonPressed();
+      break;
+    case 82:
+      removeButtonPressed();
+      break;
+    case 87:
+      constButtonPressed();
+      break;
+    case 123:
+      return false;
+  }
+  if (isfocus == 2 || isfocus == 3) {
+    if (key == 27) {
+      document.getElementsByClassName("createbox")[0].style.display = "none";
+      document.getElementsByClassName("removebox")[0].style.display = "none";
+    }
+    if (isfocus == 2 && key == 13) {createTableWithButton();}
+    if (isfocus == 3 && key == 13) {removeTableWithButton();}
+  }
+}
+function createButtonPressed() {
+  var box = document.getElementsByClassName("createbox")[0];
+  var antibox = document.getElementsByClassName("removebox")[0];
+  var msg = document.getElementsByClassName("createbox_msg")[0];
+  var input = document.getElementsByClassName("createbox_input")[0];
+  var table = document.getElementsByClassName("table");
+  if (box.style.display == "none") {
+    box.style.display = "inline-block";
+    antibox.style.display = "none";
+    input.value = "";
+    if (table.length == 0) {
+      msg.innerHTML = "<span style = 'font-weight: 600;'>입력 방법:</span> 가로 " + macro[0] + "칸, 세로 " + macro[1] + "칸: <span style = 'color: yellow; font-weight: 600;'>" + macro[0] + ", " + macro[1] + "</span>";
+    }
+    else {
+      msg.innerHTML = "입력란을 비우실 경우 <span style = 'font-weight: 600; color: yellow;'>" + macro[0] + ", " + macro[1] + "</span> 크기의 분단을 만들겠습니다."
+    }
+    input.focus();
+  }
+  else {box.style.display = "none";}
 }
 
-function makeTableWithPrompt() {
-var tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해주세요. 예시) 2,6";
-  while(true) {
-    var answer = prompt(tableMessage);
-    if (answer == null) {return;}
-    try {splitAnswer = answer.split(",");}
-    catch(e) {
-      tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해주세요. 예시) 2,6\n[ ! ] 예시를 참고하여 다시 입력해주시겠어요?"
-      continue;
+function removeButtonPressed() {
+  var box = document.getElementsByClassName("removebox")[0];
+  var antibox = document.getElementsByClassName("createbox")[0];
+  var msg = document.getElementsByClassName("removebox_msg")[0];
+  var input = document.getElementsByClassName("removebox_input")[0];
+  var button = document.getElementsByClassName("removebox_button")[0];
+  var table = document.getElementsByClassName("table");
+  if (box.style.display == "none") {
+    box.style.display = "inline-block";
+    antibox.style.display = "none";
+    input.value = "";
+    if (table.length == 0) {
+      msg.innerHTML = "더 이상 지울 분단이 없습니다!";
+      input.placeholder = "지울 분단 없음!";
+      input.disabled = true;
+      button.disabled = true;
     }
-    if (splitAnswer.length == "2") {
-      var rows = Number(splitAnswer[0]);
-      var columns = Number(splitAnswer[1]);
-      if (rows % 1 == 0 && rows > 0 && columns % 1 == 0 && columns > 0) {
-        if (rows <= 30 && columns <= 30) {
-          break;
-        }
-        else {
-          tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해주세요. 예시) 2,6\n[ ! ] 너무 큰 수는 입력할 수 없어요! 30 이하의 수로 입력해 주시겠어요?";
-        }
+    else {
+      if (table.length == 1) {
+        msg.innerHTML = "1분단을 지우시겠어요?";
+        input.value = 1;
+        input.disabled = false;
+        input.readOnly = true;
       }
       else {
-        tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해주세요. 예시) 2,6\n[ ! ] 자연수만 입력해 주시겠어요?";
+        input.disabled = false;
+        input.readOnly = false;
+        input.placeholder = table.length;
+        if (remove == 0) {
+          msg.innerHTML = "<span style = 'font-weight: 600;'>입력 방법: </span>" + table.length + "분단: " + "<span style = 'color: yellow; font-weight: 600;'>" + table.length + "</span>";
+        }
+        else {
+          msg.innerHTML = "입력란을 비우실 경우 마지막 분단인 <span style = 'font-weight: 600; color: yellow;'>" + table.length + "</span> 분단을 지우겠습니다.";
+        }
+      }
+    }
+    input.focus();
+  }
+  else {box.style.display = "none";}
+}
+
+function createTableWithButton() {
+  var input = document.getElementsByClassName("createbox_input")[0];
+  var msg = document.getElementsByClassName("createbox_msg")[0];
+  if (input.value == "") {
+    input.value = macro[0] + "," + macro[1];
+  }
+  splitAnswer = input.value.split(",");
+  if (splitAnswer.length == "2") {
+    var rows = Number(splitAnswer[0]);
+    var columns = Number(splitAnswer[1]);
+    if (rows % 1 == 0 && rows > 0 && columns % 1 == 0 && columns > 0) {
+      if (rows <= 30 && columns <= 30) {
+        macro[0] = rows;
+        macro[1] = columns;
+        input.placeholder = rows + "," + columns;
+        createTableAuto(rows,columns);
+      }
+      else {
+        msg.innerHTML = "너무 큰 수는 힘들어요. <span style = 'font-weight: 600; color: yellow;'>30 이하의 숫자</span>로 입력해 주시겠어요?";
       }
     }
     else {
-      tableMessage = "새로 만드실 분단의 가로, 세로 칸 수를 정해주세요. 예시) 2,6\n[ ! ] 예시를 참고하여 다시 입력해 주시겠어요?";
+      msg.innerHTML = "분단의 크기는 <span style = 'font-weight: 600; color: yellow;'>자연수</span>로만 입력해 주세요!";
     }
   }
-  makeTableAuto(rows,columns);
+  else {
+    msg.innerHTML = "<span style = 'font-weight: 600; color: yellow;'>가로, 세로</span> 형식으로 입력해 주세요!";
+  }
+  input.value = "";
 }
 
-function makeTableAuto(rows, columns) {
+function createTableAuto(rows, columns) {
   var tablemaker = document.createElement("table") //새로운 테이블 엘리먼트 생성
   tablemaker.setAttribute("class","table"); //class 설정
   var a = "";
@@ -68,46 +142,72 @@ function makeTableAuto(rows, columns) {
   tablemaker.innerHTML = a; //생성한 표 삽입
   document.getElementsByClassName("main")[0].appendChild(tablemaker);
   document.getElementsByClassName("sleep")[0].style.display = "none";
+  document.getElementsByClassName("createbox_msg")[0].innerHTML = "<span style = 'color: yellow; font-weight: 600;'>" + macro[0] + ", " + macro[1] + "</span> 크기의 분단을 만들었습니다!";
 }
 
-function removeTableWithPrompt() {
+function removeTableWithButton() {
   var main = document.getElementsByClassName("main")[0];
   var tip = document.getElementsByClassName("tip");
-  var tableAmount = document.getElementsByClassName("table");
-    if (tableAmount.length == 0) {
-      tip[0].innerHTML = "<font color = '#E55B5B'>오류 : 지울 분단이 없습니다!</font>";
-       return;
-     }
-  if (tableAmount.length == 1) {
-    if (confirm("1분단을 지우시겠어요?")){
-      main.removeChild(tableAmount[0]);
-      document.getElementsByClassName("sleep")[0].style.display = "block";
-    }
+  var table = document.getElementsByClassName("table");
+  var input = document.getElementsByClassName("removebox_input")[0];
+  var msg = document.getElementsByClassName("removebox_msg")[0];
+  if (table.length == 0) {return;}
+  if (input.value == "") {
+    main.removeChild(table[table.length - 1]);
+    input.value = "";
+    if (table.length == 1) {input.value = 1;}
+    afterRemove(table.length + 1);
     return;
   }
-  var removeMessage = "몇 분단을 지우시겠어요? 예시) 2";
-  while(true) {
-    var answer = prompt(removeMessage);
-    if (answer == null) {return;}
-    answer = Number(answer.replace("분단",""));
-    if (answer != NaN) {
-      if (answer % 1 == 0 && answer > 0) {
-        if (answer <= tableAmount.length){
-          main.removeChild(tableAmount[answer-1]);
-          return;
-        }
-        else {
-          removeMessage = "몇 분단을 지우시겠어요? 예시) 2\n[ ! ] "+tableAmount.length+ "분단까지만 지우실 수 있습니다!";
-        }
+  if (Number(input.value) != NaN) {
+    if (input.value % 1 == 0 && input.value > 0) {
+      if (input.value <= table.length) {
+        main.removeChild(table[input.value - 1]);
+        afterRemove(input.value);
       }
       else {
-        removeMessage = "몇 분단을 지우시겠어요? 예시) 2\n[ ! ] 자연수만 입력해 주시겠어요?";
+        msg.innerHTML = "최대 <span style = 'font-weight: 600; color: yellow;'>" + table.length +"</span>분단까지만 입력하실 수 있어요!";
       }
     }
     else {
-      removeMessage = "몇 분단을 지우시겠어요? 예시) 2\n[ ! ] 예시를 참고하여 다시 입력해주시겠어요?";
+      msg.innerHTML = "분단의 번호는 <span style = 'font-weight: 600; color: yellow;'>자연수</span>로만 입력해 주세요!";
     }
   }
+  else {
+    msg.innerHTML = "지울 분단의 번호를 <span style = 'font-weight: 600; color: yellow;'>숫자</span> 형식으로 입력해 주세요!";
+  }
+  input.value = "";
+  if (table.length == 1) {input.value = 1;}
+}
+
+function afterRemove(value) {
+  if (remove == 0) {remove = 1;}
+  var table = document.getElementsByClassName("table");
+  var msg = document.getElementsByClassName("removebox_msg")[0];
+  var input = document.getElementsByClassName("removebox_input")[0];
+  if (table.length == 1) {
+    msg.innerHTML = "<span style = 'font-weight: 600; color: yellow;'>" + value + "</span>분단을 지웠습니다. 이제 마지막 하나만 남았네요!";
+    input.readOnly = true;
+    input.disabled = false;
+  }
+  else {
+    if (table.length == 0) {
+      msg.innerHTML = "<span style = 'font-weight: 600; color: yellow;'>1</span>분단을 지웠습니다. 다 지웠네요!";
+      input.readOnly = true;
+      input.disabled = true;
+      input.placeholder = "지울 분단 없음!";
+    }
+    else {
+      msg.innerHTML = "<span style = 'font-weight: 600; color: yellow;'>" + value + "</span>분단을 지웠습니다!";
+      input.readOnly = false;
+      input.disabled = false;
+    }
+  }
+}
+
+function xButton(type) {
+  if (type == 0) {document.getElementsByClassName("createbox")[0].style.display = "none";}
+  else {document.getElementsByClassName("removebox")[0].style.display = "none";}
 }
 
 function maleButtonPressed() {
@@ -350,7 +450,7 @@ function loadSeats() {
   }
   try {
     for (k = 0; k < layout.length; k = k + 2) { //함수와의 충돌 방지를 위해 변수 변경
-      makeTableAuto(layout[k], layout[k+1]);
+      createTableAuto(layout[k], layout[k+1]);
     } //제작 작업
     cell[0].className = value[0];
     cell[0].value = value[1];
