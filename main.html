@@ -3,7 +3,7 @@
   <head>
     <title>자리바꾸기 공장 - 빠르고 간편한 자리바꾸기</title>
     <meta charset= "utf-8">
-    <meta name="description" content="자리바꾸기 공장은 선생님들을 위한 자리배치 사이트입니다. 다운로드 없이 빠르고 편리하게 학생들의 자리를 바꾸세요!">
+    <meta name="description" content="자리바꾸기 공장은 다운로드 없이 편리하게 이용하실 수 있는 웹 기반 자리바꾸기 프로그램입니다.">
     <meta name="keywords" content="자리바꾸기, 자리배치, 자리바꾸기 프로그램, 자리바꾸기 사이트, 자리배치 프로그램, 자리배치 사이트">
     <meta name="google-site-verification" content="jpbBoNM0yVqSqWRT9cJQNbLxUnDNvOSZU_ksDCslFKM" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,10 +24,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
     <link rel="stylesheet" href="style_main.css">
     <script type="text/javascript" src="function.js"></script>
-    <script type="text/javascript">
-      isfocus = 0;
-      mode = 0;
-    </script>
   </head>
   <body oncontextmenu = "return false" onselectstart = "return false" onload = "loadSeats();">
     <div class = "layout">
@@ -35,10 +31,24 @@
         <a href = "https://polariswiz.github.io/seatsfactory" style = "text-decoration: none;"><span id = "h1_left">자리바꾸기</span> <span id = "h1_right">공장</span></a>
       </h1>
         <div class = "main">
-          <div class = "sleep" onClick = "makeTableWithPrompt();">
+          <div class = "sleep" onClick = "createButtonPressed();">
             <img src = "images/sleep.png">
             <div id = "sleep_title">분단이 하나도 없네요!</div>
             <div id = "sleep_content">여기를 클릭해 첫 분단을 만들어 보세요.</div>
+          </div>
+          <div class = "createbox" style = "display: none;">
+            <span class = "x_button" style = "cursor: pointer;" onClick = "xButton(0);"><span></span><span></span></span>
+            <div class = "createbox_title">만들 분단의 크기를 입력해주세요!</div>
+            <div class = "createbox_msg"></div>
+            <label>입력 <input class = "createbox_input" type = "text" maxlength = "6" placeholder = "2,5" onfocusin = "isfocus = 2;" onfocusout = "isfocus = 0;" onkeyup = "this.value = this.value.replace(/[^0-9|,]/g, '')"> </label>
+            <input class = "createbox_button" type = "button" value = "만들기" style = "vertical-align: bottom; cursor: pointer;" onClick = "createTableWithButton();">
+          </div>
+          <div class = "removebox" style = "display: none;">
+            <span class = "x_button" style = "cursor: pointer;" onClick = "xButton(1);"><span></span><span></span></span>
+            <div class = "removebox_title" style = "color: ">지울 분단의 번호를 입력해주세요!</div>
+            <div class = "removebox_msg"></div>
+            <label>입력 <input class = "removebox_input" type = "text" maxlength = "6" placeholder = "1" onfocusin = "isfocus = 3;" onfocusout = "isfocus = 0;" onkeyup = "this.value = this.value.replace(/[^0-9]/g, '')"> </label>
+            <input class = "removebox_button" type = "button" value = "지우기" style = "vertical-align: bottom; cursor: pointer;" onClick = "makeTableWithButton();">
           </div>
         </div>
         <div class = "tip"><font color = "gray">자리바꾸기 공장에 오신 것을 환영합니다!</font></div>
@@ -47,8 +57,8 @@
           <label><span class = "malebutton button off" onmouseover = "tipMsg('male');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "male_button" onclick ="maleButtonPressed();"></label>
           <label><span class = "constbutton button off" onmouseover = "tipMsg('const');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "const_button" onclick = "constButtonPressed();"></label>
           <label><span class = "changebutton bigbutton" onmouseover = "tipMsg('change');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "change_button" onclick = "changeSeats();"></label>
-          <label><span class = "createbutton button" onmouseover = "tipMsg('create');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "create_button" onclick = "makeTableWithPrompt();"></label>
-          <label><span class = "removebutton button" onmouseover = "tipMsg('remove');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "remove_button" onclick = "removeTableWithPrompt();"></label>
+          <label><span class = "createbutton button" onmouseover = "tipMsg('create');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "create_button" onclick = "createButtonPressed();"></label>
+          <label><span class = "removebutton button" onmouseover = "tipMsg('remove');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "remove_button" onclick = "removeButtonPressed();"></label>
           <label><span class = "savebutton button" onmouseover = "tipMsg('save');" onmouseout = "tipMsg('default');"><input class = "buttoncore" type = "button" name = "save_button" onclick = "saveSeats();"></label>
       </div>
     </div>
