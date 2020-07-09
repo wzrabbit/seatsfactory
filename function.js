@@ -8,7 +8,8 @@ var remove = 0;
 document.onkeydown = keyDown;
 function keyDown(event) {
   var key = event.which || event.keyCode;
-  if (isfocus == 1 || key == 123) {return false;}
+  if (key == 123) {return false;}
+  if (isfocus == 1) {return;}
   switch(key) {
     case 69:
      createButtonPressed();
