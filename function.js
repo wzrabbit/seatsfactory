@@ -79,10 +79,12 @@ function removeButtonPressed() {
         input.value = 1;
         input.disabled = false;
         input.readOnly = true;
+        button.disabled = false;
       }
       else {
         input.disabled = false;
         input.readOnly = false;
+        button.disabled = false;
         input.placeholder = table.length;
         if (remove == 0) {
           msg.innerHTML = "<span style = 'font-weight: 600;'>입력 방법: </span>" + table.length + "분단: " + "<span style = 'color: yellow; font-weight: 600;'>" + table.length + "</span>";
@@ -190,12 +192,14 @@ function afterRemove(value) {
     msg.innerHTML = "<span style = 'font-weight: 600; color: yellow;'>" + value + "</span>분단을 지웠습니다. 이제 마지막 하나만 남았네요!";
     input.readOnly = true;
     input.disabled = false;
+    button.disabled = false;
   }
   else {
     if (table.length == 0) {
       msg.innerHTML = "<span style = 'font-weight: 600; color: yellow;'>1</span>분단을 지웠습니다. 다 지웠네요!";
       input.readOnly = true;
       input.disabled = true;
+      button.disabled = true;
       input.placeholder = "지울 분단 없음!";
       document.getElementsByClassName("sleep")[0].style.display = "inline-block";
     }
@@ -203,6 +207,7 @@ function afterRemove(value) {
       msg.innerHTML = "<span style = 'font-weight: 600; color: yellow;'>" + value + "</span>분단을 지웠습니다!";
       input.readOnly = false;
       input.disabled = false;
+      button.disabled = false;
       input.placeholder = table.length;
     }
   }
