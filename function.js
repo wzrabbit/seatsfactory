@@ -5,6 +5,12 @@ var mode = 0;
 var macro = [2, 5];
 var remove = 0;
 
+var preload = new Image(); //이미지 불러오기를 유도함으로써, 미리 이미지를 로딩할 수 있도록 한다
+preload.src = "images/btn_male_activated.png";
+preload.src = "images/btn_const_activated.png";
+preload.src = "images/mbtn_male_activated.png";
+preload.src = "images/mbtn_const_activated.png";
+
 document.onkeydown = keyDown;
 function keyDown(event) {
   var key = event.which || event.keyCode;
