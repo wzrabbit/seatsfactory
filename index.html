@@ -8,13 +8,11 @@
     <meta name="keywords" content="자리바꾸기, 자리배치, 자리바꾸기 프로그램, 자리바꾸기 사이트, 자리배치 프로그램, 자리배치 사이트">
     <meta name="google-site-verification" content="jpbBoNM0yVqSqWRT9cJQNbLxUnDNvOSZU_ksDCslFKM" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:url" content="https://polariswiz.github.io/seatsfactory">
+    <meta property="og:url" content="https://polariswiz.github.io/seatsfactory/main.html">
     <meta property="og:title" content="자리바꾸기 공장 - 빠르고 간편한 자리바꾸기">
     <meta property="og:description" content="자리바꾸기 공장은 다운로드 없이 편리하게 이용하실 수 있는 웹 기반 자리바꾸기 프로그램입니다.">
     <meta property="og:image" content="images/og_image.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168061613-1"></script>
-    <script data-ad-client="ca-pub-2681345586577297" async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -24,49 +22,70 @@
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
-    <link rel="stylesheet" href="style_index.css">
-    <script>
-        function displayContent(num, self) {
-            var target = document.getElementsByClassName("content")[num];
-            if (self.checked == true) { target.style.display = "block"; } else { target.style.display = "none"; }
-        }
-    </script>
+    <link rel="stylesheet" href="style_main.css">
+    <script type="text/javascript" src="function.js"></script>
 </head>
 
-<body oncontextmenu="return false" onselectstart="return false">
-    <h1>
-        <span id="h1_left">자리바꾸기</span> <span id="h1_right">공장</span>
-    </h1>
-    <img src="images/main_icon_spark.png" style="display: block; margin: 0px auto; cursor: pointer;"
-        onClick="window.open('main.html')">
-    <h2 class="intro">'<font color="yellow">자리바꾸기 공장</font>' 은 다운로드 없이 편리하게 이용하실 수 있는 <font color="skyblue">웹 기반 자리바꾸기
-            프로그램</font>입니다.</h2>
-    <div class="intro">
-        <font color="gray">위쪽에 있는 박스를 클릭하시면 자리바꾸기 공장으로 이동합니다!</font>
+<body onload="loadSeats();">
+    <div class="layout">
+        <h1>
+            <a href="https://polariswiz.github.io/seatsfactory" style="text-decoration: none;"><span
+                    id="h1_left">자리바꾸기</span> <span id="h1_right">공장</span></a>
+        </h1>
+        <div class="main">
+            <div class="sleep" onClick="createButtonPressed();">
+                <img src="images/sleep.png">
+                <div id="sleep_title">분단이 하나도 없네요!</div>
+                <div id="sleep_content">여기를 클릭해 첫 분단을 만들어 보세요.</div>
+            </div>
+            <div class="createbox" style="display: none;">
+                <span class="x_button" style="cursor: pointer;" onClick="xButton(0);"><span></span><span></span></span>
+                <div class="createbox_title">만들 분단의 크기를 입력해주세요!</div>
+                <div class="createbox_msg"></div>
+                <label>입력 <input class="createbox_input" type="text" maxlength="6" placeholder="2,5"
+                        onfocusin="isfocus = 2;" onfocusout="isfocus = 0;"
+                        onkeyup="this.value = this.value.replace(/[^0-9|,]/g, '')"> </label>
+                <input class="createbox_button" type="button" value="만들기"
+                    style="vertical-align: bottom; cursor: pointer;" onClick="createTableWithButton();">
+            </div>
+            <div class="removebox" style="display: none;">
+                <span class="x_button" style="cursor: pointer;" onClick="xButton(1);"><span></span><span></span></span>
+                <div class="removebox_title" style="color: ">지울 분단의 번호를 입력해주세요!</div>
+                <div class="removebox_msg"></div>
+                <label>입력 <input class="removebox_input" type="text" maxlength="6" placeholder="1"
+                        onfocusin="isfocus = 3;" onfocusout="isfocus = 0;"
+                        onkeyup="this.value = this.value.replace(/[^0-9]/g, '')"> </label>
+                <input class="removebox_button" type="button" value="지우기"
+                    style="vertical-align: bottom; cursor: pointer;" onClick="removeTableWithButton();">
+            </div>
+        </div>
+        <div class="tip">
+            <font color="gray">자리바꾸기 공장에 오신 것을 환영합니다!</font>
+        </div>
+        <div class="menu">
+            <label><span class="infobutton button" onmouseover="tipMsg('info');" onmouseout="tipMsg('default');"><input
+                        class="buttoncore" type="button" name="info_button"
+                        onclick="alert('준비중입니다. 빠른 시일 내 반영하겠습니다.');"></label>
+            <label><span class="malebutton button off" onmouseover="tipMsg('male');"
+                    onmouseout="tipMsg('default');"><input class="buttoncore" type="button" name="male_button"
+                        onclick="maleButtonPressed();"></label>
+            <label><span class="constbutton button off" onmouseover="tipMsg('const');"
+                    onmouseout="tipMsg('default');"><input class="buttoncore" type="button" name="const_button"
+                        onclick="constButtonPressed();"></label>
+            <label><span class="changebutton bigbutton" onmouseover="tipMsg('change');"
+                    onmouseout="tipMsg('default');"><input class="buttoncore" type="button" name="change_button"
+                        onclick="changeSeats();"></label>
+            <label><span class="createbutton button" onmouseover="tipMsg('create');"
+                    onmouseout="tipMsg('default');"><input class="buttoncore" type="button" name="create_button"
+                        onclick="createButtonPressed();"></label>
+            <label><span class="removebutton button" onmouseover="tipMsg('remove');"
+                    onmouseout="tipMsg('default');"><input class="buttoncore" type="button" name="remove_button"
+                        onclick="removeButtonPressed();"></label>
+            <label><span class="savebutton button" onmouseover="tipMsg('save');" onmouseout="tipMsg('default');"><input
+                        class="buttoncore" type="button" name="save_button" onclick="saveSeats();"></label>
+        </div>
     </div>
-    <!--<div class = "container">
-      <div class = "headline">
-        <label><input class = "a" type = "checkbox" onClick = "displayContent(0, this);"><span></span><span></span>
-          <div class = "headline_title">도움말 (준비중)</div>
-      </div>
-      <div class = "content">
-        <div class = "paragraph">
-          준비중입니다. 곧 도움말을 수록하도록 하겠습니다.
-        </div>
-      </div>
-      <div class = "headline">
-        <label><input class = "a" type = "checkbox" onClick = "displayContent(1, this);"><span></span><span></span>
-          <div class = "headline_title">업데이트 로그</div>
-      </div>
-      <div class = "content">
-        <div class = "paragraph">
-          <font color = "yellow">2020-11-06</font><br>
-          - 자리바꾸기 공장이 새로운 도메인에서 시작합니다.
-        </div>
-      </div>
-    </div>-->
 </body>
 
 </html>
